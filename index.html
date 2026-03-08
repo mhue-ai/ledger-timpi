@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ledger Timpi — NTMPI Cost Basis Calculator | Neutaro Tax Tool</title>
+  <meta name="description" content="Free open-source NTMPI cost basis calculator for the Neutaro blockchain. Track node rewards, staking APY, delegations, and transfers — auto-fetch pricing, generate IRS Form 8949, and compute FIFO/LIFO/HIFO capital gains. Part of the ClawPurse ecosystem." />
+  <meta name="keywords" content="NTMPI cost basis, Neutaro tax calculator, crypto tax tool, NTMPI tax, staking rewards tax, node rewards income, IRS Form 8949, crypto capital gains, FIFO LIFO HIFO, Timpi node rewards, blockchain tax reporting, ClawPurse, cryptocurrency cost basis tracker, DePIN tax, Neutaro wallet" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Mhue" />
+  <meta name="generator" content="ClawPurse" />
+  <link rel="canonical" href="https://ledger.clawpurse.ai/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ledger Timpi — Free NTMPI Cost Basis Calculator" />
+  <meta property="og:description" content="Open-source tax tool for NTMPI on Neutaro. Track node rewards, staking APY, and transfers. Generate Form 8949 with FIFO/LIFO/HIFO cost basis methods." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ledger.clawpurse.ai/" />
+  <meta property="og:site_name" content="Ledger Timpi" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ledger Timpi — NTMPI Cost Basis Calculator" />
+  <meta name="twitter:description" content="Free open-source tax tool for Neutaro. Node rewards, staking APY, Form 8949, and FIFO/LIFO/HIFO capital gains — all in one page." />
+
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Ledger Timpi",
+    "alternateName": "NTMPI Cost Basis Calculator",
+    "url": "https://ledger.clawpurse.ai/",
+    "description": "Free open-source cost basis calculator for NTMPI on the Neutaro blockchain. Tracks node rewards, staking delegations, transfers, and generates IRS Form 8949 with multiple cost basis methods.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any (web-based)",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "NTMPI node reward tracking (Synaptron, Guardian, Collector, GeoCore)",
+      "Staking APY income calculation",
+      "FIFO, LIFO, HIFO, and Average Cost basis methods",
+      "IRS Form 8949 generation per tax year",
+      "Self-transfer detection and Address Book",
+      "Auto-fetched historical NTMPI pricing",
+      "CSV export",
+      "Delegation and undelegation tracking",
+      "Node Access NFT display"
+    ],
+    "author": {
+      "@type": "Organization",
+      "name": "Mhue AI",
+      "url": "https://mhue.ai"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ClawPurse",
+      "url": "https://clawpurse.ai"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How are NTMPI node rewards taxed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "NTMPI node rewards (Synaptron, Guardian, Collector, GeoCore) are treated as ordinary income at fair market value when received, per IRS Notice 2014-21. Ledger Timpi automatically classifies these from on-chain transaction memos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What cost basis methods does Ledger Timpi support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ledger Timpi supports FIFO (First In First Out, IRS default), LIFO (Last In First Out), HIFO (Highest In First Out, minimizes gains), and Average Cost. Per-wallet tracking is required starting 2025 (Rev. Proc. 2024-28)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are transfers between my own wallets taxable?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Self-transfers between your own Neutaro wallets are not taxable events. Ledger Timpi automatically detects round-trip transfers and provides an Address Book to tag your other wallets, excluding them from Form 8949."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Ledger Timpi require an API key?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Ledger Timpi fetches all transaction data directly from the public Neutaro REST API. Just enter your wallet address and click Fetch. No account, API key, or signup required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is NTMPI staking APY taxed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Staking rewards are ordinary income at fair market value when received, per IRS Revenue Ruling 2023-14. Ledger Timpi tracks delegation rewards separately and includes them in your taxable income calculation."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ClawPurse", "item": "https://clawpurse.ai" },
+      { "@type": "ListItem", "position": 2, "name": "Ledger Timpi", "item": "https://ledger.clawpurse.ai" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0c0e13;
+      --bg-raised: #12151c;
+      --bg-card: #171b24;
+      --bg-card-hover: #1d2230;
+      --bg-input: #0f1118;
+      --border: #1e2230;
+      --border-accent: #2a2f40;
+      --text: #e2e4ea;
+      --text-dim: #8b8f9e;
+      --text-muted: #5c6070;
+      --coral: #f47458;
+      --coral-dim: rgba(244,116,88,0.12);
+      --coral-glow: rgba(244,116,88,0.06);
+      --cyan: #4ecdc4;
+      --cyan-dim: rgba(78,205,196,0.10);
+      --green: #3dd68c;
+      --green-dim: rgba(61,214,140,0.10);
+      --red: #f4587a;
+      --red-dim: rgba(244,88,122,0.10);
+      --yellow: #f4c542;
+      --yellow-dim: rgba(244,197,66,0.10);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,0.10);
+      --font: 'Outfit', system-ui, sans-serif;
+      --mono: 'Fira Code', 'JetBrains Mono', monospace;
+      --radius: 10px;
+      --radius-sm: 6px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none; opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+        }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      padding: 48px 0 32px; text-align: center; position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, var(--coral-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .hero h1 span { color: var(--coral); }
+    .hero p { color: var(--text-dim); font-size: 0.95rem; max-width: 560px; margin: 0 auto; }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px; margin-bottom: 20px;
+    }
+    .card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 0.85rem; font-weight: 600; color: var(--text-dim);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    .input-row { display: flex; gap: 12px; margin-bottom: 12px; }
+    .input-group { flex: 1; }
+    .input-group label {
+      display: block; font-size: 0.78rem; color: var(--text-muted);
+      margin-bottom: 6px; font-weight: 500;
+    }
+    .input-group input, .input-group select {
+      width: 100%; background: var(--bg-input);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 10px 14px; color: var(--text);
+      font-family: var(--mono); font-size: 0.85rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .input-group input:focus { border-color: var(--coral); }
+    .input-group input::placeholder { color: var(--text-muted); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border: none; border-radius: var(--radius-sm);
+      font-family: var(--font); font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--coral); color: #0c0e13; }
+    .btn-primary:hover { background: #f5896f; transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .btn-ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+    .btn-sm { padding: 6px 12px; font-size: 0.78rem; }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px; margin-bottom: 20px;
+    }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 20px;
+    }
+    .stat-label {
+      font-size: 0.72rem; font-weight: 500; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;
+    }
+    .stat-value { font-family: var(--mono); font-size: 1.15rem; font-weight: 600; }
+    .stat-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; font-family: var(--mono); }
+    .stat-value.gain { color: var(--green); }
+    .stat-value.loss { color: var(--red); }
+    .stat-value.staked { color: var(--purple); }
+
+    .table-wrap {
+      overflow-x: auto; border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    thead th {
+      background: var(--bg-raised); color: var(--text-muted);
+      font-weight: 600; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.06em; padding: 10px 14px; text-align: left;
+      border-bottom: 1px solid var(--border); position: sticky; top: 0;
+    }
+    tbody td {
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+      font-family: var(--mono); font-size: 0.8rem; vertical-align: middle;
+    }
+    tbody tr:hover { background: var(--bg-card-hover); }
+    tbody tr:last-child td { border-bottom: none; }
+    .td-addr { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .td-in { color: var(--green); }
+    .td-out { color: var(--red); }
+    .td-stake { color: var(--purple); }
+    .td-reward { color: var(--yellow); }
+    .td-node { color: var(--cyan); }
+    .td-apy { color: #a78bfa; }
+    .td-lootbox { color: #f472b6; }
+    .td-adjustment { color: #fb923c; }
+    .td-memo { color: var(--text-dim); font-size: 0.7rem; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .td-hash a { color: var(--cyan); text-decoration: none; font-size: 0.75rem; }
+    .td-hash a:hover { text-decoration: underline; }
+
+    .cost-input {
+      width: 90px; background: var(--bg-input);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 4px 8px; color: var(--text);
+      font-family: var(--mono); font-size: 0.78rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .cost-input:focus { border-color: var(--coral); }
+    .cost-input.auto-filled { border-color: var(--cyan); background: var(--cyan-dim); }
+
+    .price-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-family: var(--mono); font-size: 0.8rem;
+    }
+    .price-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .status-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-size: 0.8rem; color: var(--text-dim); margin-bottom: 16px;
+    }
+    .status-bar .spinner {
+      width: 14px; height: 14px;
+      border: 2px solid var(--border); border-top-color: var(--coral);
+      border-radius: 50%; animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .status-bar.error { border-color: rgba(244,88,122,0.3); background: var(--red-dim); color: var(--red); }
+    .status-bar.success { border-color: rgba(61,214,140,0.3); background: var(--green-dim); color: var(--green); }
+
+    .method-bar {
+      display: flex; gap: 2px; margin-bottom: 16px;
+      background: var(--bg-input); border-radius: var(--radius-sm);
+      padding: 3px; border: 1px solid var(--border);
+    }
+    .method-btn {
+      flex: 1; padding: 8px 12px; background: transparent; border: none;
+      color: var(--text-dim); font-family: var(--font);
+      font-size: 0.78rem; font-weight: 600; border-radius: 4px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .method-btn.active { background: var(--coral); color: #0c0e13; }
+    .method-btn:not(.active):hover { color: var(--text); }
+
+    .export-bar { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; align-items: center; }
+    .tax-forms-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px 24px; margin-top: 24px; text-align: center;
+    }
+    .tax-forms-card h3 { margin: 0 0 4px; font-size: 1.1rem; color: var(--text); }
+    .tax-forms-card .tax-sub { color: var(--text-dim); font-size: 0.82rem; margin-bottom: 20px; }
+    .tax-forms-actions {
+      display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap;
+    }
+    .tax-forms-actions select {
+      background: var(--bg); color: var(--text); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px; font-size: 0.85rem; font-family: var(--mono);
+      cursor: pointer;
+    }
+    .tax-forms-actions select:hover { border-color: var(--coral); }
+    .btn-generate {
+      background: var(--coral); color: #fff; border: none; border-radius: 8px;
+      padding: 12px 28px; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: background 0.2s, transform 0.1s; font-family: inherit;
+    }
+    .btn-generate:hover { background: #e05d44; transform: translateY(-1px); }
+    .btn-generate:active { transform: translateY(0); }
+    .tax-forms-secondary {
+      display: flex; gap: 10px; justify-content: center; margin-top: 16px;
+    }
+    .tax-forms-secondary button {
+      background: transparent; color: var(--text-dim); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 16px; font-size: 0.8rem; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px; font-family: inherit;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tax-forms-secondary button:hover { border-color: var(--coral); color: var(--coral); }
+
+    .toggle-row {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .toggle-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 20px; font-size: 0.75rem;
+      font-weight: 600; cursor: pointer; transition: all 0.2s;
+      border: 1px solid var(--border); background: var(--bg-input);
+      color: var(--text-dim); user-select: none;
+    }
+    .toggle-chip.active { border-color: var(--coral); color: var(--coral); background: var(--coral-dim); }
+    .toggle-chip .chip-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+    }
+    .chip-dot.green { background: var(--green); }
+    .chip-dot.red { background: var(--red); }
+    .chip-dot.purple { background: var(--purple); }
+    .chip-dot.yellow { background: var(--yellow); }
+
+    .nft-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px; margin-bottom: 16px;
+    }
+    .nft-item {
+      background: var(--bg-raised); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px; display: flex; gap: 14px;
+      align-items: flex-start; transition: border-color 0.2s;
+    }
+    .nft-item:hover { border-color: var(--coral-dim); }
+    .nft-icon {
+      width: 44px; height: 44px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .nft-icon.collector { background: var(--green-dim); }
+    .nft-icon.guardian { background: var(--cyan-dim); }
+    .nft-icon.synaptron { background: var(--purple-dim); }
+    .nft-icon.geocore { background: var(--coral-dim); }
+    .nft-details { flex: 1; min-width: 0; }
+    .nft-name {
+      font-size: 0.82rem; font-weight: 600; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .nft-type {
+      font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;
+      letter-spacing: 0.04em; font-weight: 500; margin-top: 2px;
+    }
+    .nft-reward {
+      margin-top: 8px; display: flex; gap: 8px; align-items: baseline;
+    }
+    .nft-reward-value {
+      font-family: var(--mono); font-size: 0.85rem; font-weight: 600; color: var(--yellow);
+    }
+    .nft-reward-label {
+      font-size: 0.7rem; color: var(--text-muted);
+    }
+    .nft-reward-usd {
+      font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim);
+    }
+    .nft-summary {
+      display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;
+      padding: 14px 18px; background: var(--bg-raised);
+      border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .nft-summary-item { }
+    .nft-summary-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
+    .nft-summary-value { font-family: var(--mono); font-size: 1rem; font-weight: 600; }
+    .nft-summary-value.yellow { color: var(--yellow); }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 24px 0;
+      margin-top: 40px; text-align: center;
+      color: var(--text-muted); font-size: 0.78rem;
+    }
+    footer a { color: var(--coral); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .hidden { display: none !important; }
+
+    /* Address Book */
+    .addr-book-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 20px; }
+    .addr-book-why { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; padding: 10px 14px; background: var(--yellow-dim); border: 1px solid rgba(244,197,66,0.18); border-radius: var(--radius-sm); }
+    .addr-book-why strong { color: var(--yellow); }
+    .addr-book-row { display: grid; grid-template-columns: 1fr 120px 32px; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.75rem; }
+    .addr-book-row:last-child { border-bottom: none; }
+    .addr-book-addr { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .addr-tag { font-size: 0.62rem; padding: 2px 8px; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; text-align: center; white-space: nowrap; }
+    .addr-tag.self { background: var(--cyan-dim); color: var(--cyan); }
+    .addr-tag.exchange { background: var(--yellow-dim); color: var(--yellow); }
+    .addr-tag.gift { background: var(--purple-dim); color: var(--purple); }
+    .addr-tag.other { background: rgba(255,255,255,0.05); color: var(--text-dim); }
+    .addr-book-add { display: grid; grid-template-columns: 1fr 140px 80px; gap: 8px; margin-top: 12px; }
+    .addr-book-add input, .addr-book-add select { background: var(--bg-input); border: 1px solid var(--border); color: var(--text); padding: 6px 8px; border-radius: var(--radius-sm); font-size: 0.72rem; font-family: var(--mono); }
+    .addr-book-add select { font-family: var(--font); }
+    .addr-book-add button { background: var(--coral-dim); color: var(--coral); border: 1px solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-size: 0.72rem; font-weight: 600; }
+    .addr-book-add button:hover { border-color: var(--coral); }
+    .addr-del-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.8rem; padding: 2px 4px; border-radius: 3px; }
+    .addr-del-btn:hover { color: var(--red); background: var(--red-dim); }
+    .addr-book-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 20px; font-size: 0.66rem; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+    .addr-book-empty { font-size: 0.75rem; color: var(--text-muted); padding: 10px 0; }
+    .disposition-warning { padding: 10px 14px; background: var(--red-dim); border: 1px solid rgba(244,88,122,0.2); border-radius: var(--radius-sm); font-size: 0.75rem; color: var(--text-dim); margin-top: 10px; display: none; }
+    .disposition-warning strong { color: var(--red); }
+    .donate-box { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); }
+    .donate-box h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .donate-box p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 12px; }
+    .donate-addr { display: inline-block; font-family: var(--mono); font-size: 0.78rem; background: var(--bg-card); border: 1px solid var(--border); padding: 10px 18px; border-radius: 8px; color: var(--cyan); word-break: break-all; cursor: pointer; transition: border-color 0.2s; }
+    .donate-addr:hover { border-color: var(--cyan); }
+    .donate-memo { font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; }
+    .td-self { color: var(--cyan); font-weight: 600; }
+
+    @media (max-width: 640px) {
+      .input-row { flex-direction: column; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 1.4rem; }
+      table { font-size: 0.75rem; }
+      thead th, tbody td { padding: 8px 10px; }
+      .toggle-row { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Shared ecosystem nav -->
+  <script src="https://clawpurse.ai/nav.js"></script>
+
+  <div class="container">
+    <section class="hero">
+      <h1>NTMPI <span>Cost Basis</span> Calculator</h1>
+      <p>Track your Neutaro chain transfers, staking delegations, and rewards — calculate USD cost basis with auto-fetched or manual pricing.</p>
+    </section>
+
+    <div class="card" id="wallet-card">
+      <div class="card-header">
+        <span class="card-title">Wallet Address</span>
+        <div class="price-badge" id="live-price" style="display:none">
+          <span class="dot"></span>
+          <span id="price-display">$0.0000</span>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group" style="flex:3">
+          <label>Neutaro Address</label>
+          <input type="text" id="address-input" placeholder="neutaro1..." spellcheck="false" autocomplete="off" />
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <button class="btn btn-primary" id="fetch-btn" onclick="fetchWallet()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+          Fetch Transactions
+        </button>
+        <button class="btn btn-ghost btn-sm" onclick="clearAll()">Clear</button>
+        <span style="font-size:0.75rem; color:var(--text-muted); margin-left:auto;">
+          Uses Neutaro REST API — no API key needed
+        </span>
+      </div>
+    </div>
+
+    <!-- Address Book — always visible, right below wallet address -->
+    <div class="addr-book-card hidden" id="addr-book">
+      <div class="card-header">
+        <span class="card-title">📒 Your Other Wallets</span>
+      </div>
+      <div class="addr-book-why">
+        <strong>⚠️ Important for accurate tax reporting:</strong> If you transfer NTMPI between your own wallets,
+        those show as taxable dispositions unless you tag them here. Add your other wallet addresses
+        as <strong>"Self"</strong> so the tool knows they're non-taxable self-transfers.
+      </div>
+      <div id="addr-book-list"></div>
+      <div id="disposition-warning" class="disposition-warning">
+        <strong>⚠️ Untagged outgoing transfers detected.</strong> Some transfers may be to your own wallets.
+        If so, tag them as "Self" above — otherwise they'll appear as taxable dispositions on Form 8949.
+      </div>
+      <div class="addr-book-add">
+        <input type="text" id="addr-book-input" placeholder="neutaro1..." />
+        <select id="addr-book-tag">
+          <option value="self">🔁 Self (Own Wallet)</option>
+          <option value="exchange">🏦 Exchange</option>
+          <option value="gift">🎁 Gift Recipient</option>
+          <option value="other">📋 Other</option>
+        </select>
+        <button onclick="addAddressTag()">+ Add</button>
+      </div>
+      <div class="addr-book-legend">
+        <div><strong>🔁 Self:</strong> Non-taxable — basis carries over</div>
+        <div><strong>🏦 Exchange:</strong> Dispositions / acquisitions</div>
+        <div><strong>🎁 Gift:</strong> Outflows are dispositions at FMV</div>
+        <div><strong>📋 Other:</strong> Label only, no tax change</div>
+      </div>
+    </div>
+
+    <div id="status-container" class="hidden"></div>
+
+    <div class="stats hidden" id="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Available Balance</div>
+        <div class="stat-value" id="stat-balance">—</div>
+        <div class="stat-sub" id="stat-balance-usd">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Staked</div>
+        <div class="stat-value staked" id="stat-staked">—</div>
+        <div class="stat-sub" id="stat-staked-usd">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Cost Basis</div>
+        <div class="stat-value" id="stat-basis">—</div>
+        <div class="stat-sub" id="stat-avg-cost">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Value</div>
+        <div class="stat-value" id="stat-value">—</div>
+        <div class="stat-sub" id="stat-price">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Taxable Income (Rewards)</div>
+        <div class="stat-value" id="stat-rewards">—</div>
+        <div class="stat-sub" id="stat-rewards-sub">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Unrealized P&amp;L</div>
+        <div class="stat-value" id="stat-pnl">—</div>
+        <div class="stat-sub" id="stat-pnl-pct">—</div>
+      </div>
+    </div>
+
+    <div class="card hidden" id="nft-card">
+      <div class="card-header">
+        <span class="card-title">Node Access NFTs</span>
+        <span style="font-size:0.72rem;color:var(--text-muted);" id="nft-count"></span>
+      </div>
+      <div id="nft-summary" class="nft-summary hidden">
+        <div class="nft-summary-item">
+          <div class="nft-summary-label">Total NFTs</div>
+          <div class="nft-summary-value" id="nft-total-count">0</div>
+        </div>
+        <div class="nft-summary-item">
+          <div class="nft-summary-label">Est. Monthly Output</div>
+          <div class="nft-summary-value yellow" id="nft-total-monthly">0 NTMPI</div>
+        </div>
+        <div class="nft-summary-item">
+          <div class="nft-summary-label">Monthly Value</div>
+          <div class="nft-summary-value" id="nft-total-monthly-usd">$0.00</div>
+        </div>
+        <div class="nft-summary-item">
+          <div class="nft-summary-label">Annual Est.</div>
+          <div class="nft-summary-value yellow" id="nft-total-annual">$0.00</div>
+        </div>
+      </div>
+      <div class="nft-grid" id="nft-grid"></div>
+
+      <!-- Reward Schedule Reference Table -->
+      <div id="nft-reward-table" style="margin-top:16px;">
+        <div style="font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.06em;">
+          Reward Schedule — NTMPI per Node / Month
+        </div>
+        <div class="table-wrap" style="margin-bottom:8px;">
+          <table style="font-size:0.72rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Node Type</th>
+                <th style="text-align:left;">Edition</th>
+                <th style="text-align:right;">Till Aug 2025</th>
+                <th style="text-align:right;">Sep 2025 – Aug 2026</th>
+                <th style="text-align:right;">Sep 2026 – Aug 2027</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🔍 Collector</td>
+                <td>Regular</td>
+                <td style="text-align:right;font-family:var(--mono);">375</td>
+                <td style="text-align:right;font-family:var(--mono);">250</td>
+                <td style="text-align:right;font-family:var(--mono);">210</td>
+              </tr>
+              <tr>
+                <td>🔍 Collector</td>
+                <td><span style="color:var(--yellow);">★ Founders</span></td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">563</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">375</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">315</td>
+              </tr>
+              <tr>
+                <td>🛡️ Guardian</td>
+                <td>Regular</td>
+                <td style="text-align:right;font-family:var(--mono);">667</td>
+                <td style="text-align:right;font-family:var(--mono);">500</td>
+                <td style="text-align:right;font-family:var(--mono);">375</td>
+              </tr>
+              <tr>
+                <td>🛡️ Guardian</td>
+                <td><span style="color:var(--yellow);">★ Founders</span></td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">1,000</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">750</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">563</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" style="margin-bottom:8px;">
+          <table style="font-size:0.72rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Node Type</th>
+                <th style="text-align:left;">Edition</th>
+                <th style="text-align:right;">Till Dec 2025</th>
+                <th style="text-align:right;">Jan – Dec 2026</th>
+                <th style="text-align:right;">Jan – Dec 2027</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🧠 Synaptron T1</td>
+                <td>Regular</td>
+                <td style="text-align:right;font-family:var(--mono);">1,400</td>
+                <td style="text-align:right;font-family:var(--mono);">800</td>
+                <td style="text-align:right;font-family:var(--mono);">500</td>
+              </tr>
+              <tr>
+                <td>🧠 Synaptron T1</td>
+                <td><span style="color:var(--yellow);">★ Founders</span></td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">2,100</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">1,200</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">750</td>
+              </tr>
+              <tr>
+                <td>🧠 Synaptron T2</td>
+                <td>Regular</td>
+                <td style="text-align:right;font-family:var(--mono);">1,600</td>
+                <td style="text-align:right;font-family:var(--mono);">1,000</td>
+                <td style="text-align:right;font-family:var(--mono);">700</td>
+              </tr>
+              <tr>
+                <td>🧠 Synaptron T2</td>
+                <td><span style="color:var(--yellow);">★ Founders</span></td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">2,400</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">1,500</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">1,050</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" style="margin-bottom:8px;">
+          <table style="font-size:0.72rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Node Type</th>
+                <th style="text-align:left;">Edition</th>
+                <th style="text-align:right;">Till Aug 2026</th>
+                <th style="text-align:right;">Sep 2026 – Aug 2027</th>
+                <th style="text-align:right;">Sep 2027 – Aug 2028</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🌐 GeoCore</td>
+                <td>Regular</td>
+                <td style="text-align:right;font-family:var(--mono);">800</td>
+                <td style="text-align:right;font-family:var(--mono);">400</td>
+                <td style="text-align:right;font-family:var(--mono);">300</td>
+              </tr>
+              <tr>
+                <td>🌐 GeoCore</td>
+                <td><span style="color:var(--yellow);">★ Founders</span></td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">1,200</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">600</td>
+                <td style="text-align:right;font-family:var(--mono);color:var(--yellow);">450</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="font-size:0.7rem;color:var(--text-muted);line-height:1.5;margin-top:8px;">
+        Reward amounts are <strong>guaranteed minimum pool contributions per node</strong> shared among all active nodes.
+        Actual rewards depend on node uptime and total active nodes.
+        Founders Edition rates are set fees as published.
+        Data from
+        <a href="https://github.com/Timpi-official/Nodes" target="_blank" style="color:var(--cyan);">Timpi Official Nodes Repo</a> &amp;
+        <a href="https://timpi.gitbook.io/timpis-knowledge-base/timpis-knowledge-base/timpi-nodes/node-reward-structures" target="_blank" style="color:var(--cyan);">Timpi Knowledge Base</a>.
+      </div>
+    </div>
+
+    <div class="card hidden" id="transfers-card">
+      <div class="card-header">
+        <span class="card-title">Transaction History</span>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-size:0.72rem;color:var(--text-muted);">Sort:</span>
+          <select id="sort-order" style="font-size:0.75rem;padding:4px 8px;background:var(--bg-input);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:var(--font);" onchange="renderTable()">
+            <option value="asc">Oldest First</option>
+            <option value="desc">Newest First</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="toggle-row" id="filter-toggles">
+        <div class="toggle-chip active" data-filter="in" onclick="toggleFilter(this)">
+          <span class="chip-dot green"></span> Transfers In
+        </div>
+        <div class="toggle-chip active" data-filter="out" onclick="toggleFilter(this)">
+          <span class="chip-dot red"></span> Transfers Out
+        </div>
+        <div class="toggle-chip active" data-filter="node_reward" onclick="toggleFilter(this)">
+          <span class="chip-dot" style="background:var(--cyan);"></span> Node Rewards
+        </div>
+        <div class="toggle-chip active" data-filter="staking_apy" onclick="toggleFilter(this)">
+          <span class="chip-dot" style="background:#a78bfa;"></span> Staking APY
+        </div>
+        <div class="toggle-chip active" data-filter="delegate" onclick="toggleFilter(this)">
+          <span class="chip-dot purple"></span> Delegate
+        </div>
+        <div class="toggle-chip active" data-filter="undelegate" onclick="toggleFilter(this)">
+          <span class="chip-dot purple"></span> Undelegate
+        </div>
+        <div class="toggle-chip active" data-filter="redelegate" onclick="toggleFilter(this)">
+          <span class="chip-dot purple"></span> Redelegate
+        </div>
+        <div class="toggle-chip active" data-filter="reward" onclick="toggleFilter(this)">
+          <span class="chip-dot yellow"></span> Staking Claims
+        </div>
+        <div class="toggle-chip active" data-filter="other_reward" onclick="toggleFilter(this)">
+          <span class="chip-dot" style="background:#f472b6;"></span> Lootbox / Adj
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <span style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;">Cost Basis Method</span>
+        <div style="font-size:0.62rem;color:var(--text-dim);margin-top:3px;">
+          IRS default is FIFO. HIFO may minimize taxable gains. Per-wallet tracking required starting 2025 tax year (Rev. Proc. 2024-28).
+        </div>
+      </div>
+      <div class="method-bar">
+        <button class="method-btn active" data-method="fifo" onclick="setMethod('fifo')">FIFO</button>
+        <button class="method-btn" data-method="lifo" onclick="setMethod('lifo')">LIFO</button>
+        <button class="method-btn" data-method="hifo" onclick="setMethod('hifo')">HIFO</button>
+        <button class="method-btn" data-method="avg" onclick="setMethod('avg')">Avg Cost</button>
+      </div>
+
+      <div class="table-wrap" id="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount (NTMPI)</th>
+              <th>Counterparty</th>
+              <th>Memo</th>
+              <th>FMV/NTMPI ($)</th>
+              <th>Total FMV ($)</th>
+              <th>Tx</th>
+            </tr>
+          </thead>
+          <tbody id="tx-tbody"></tbody>
+        </table>
+      </div>
+      <div class="export-bar">
+        <button class="btn btn-ghost btn-sm" onclick="exportCSV()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
+        <button class="btn btn-ghost btn-sm" onclick="recalculate()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          Recalculate
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tax-forms-card hidden" id="tax-forms-card">
+      <h3>📄 Generate IRS Tax Forms</h3>
+      <p class="tax-sub">Form 8949 (dispositions &amp; capital gains) + Schedule 1 (ordinary income from staking &amp; node rewards)</p>
+      <div class="tax-forms-actions">
+        <select id="tax-year">
+          <option value="2024">TY 2024</option>
+          <option value="2025" selected>TY 2025</option>
+          <option value="2026">TY 2026</option>
+        </select>
+        <button class="btn-generate" onclick="generateTaxForms()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Generate Tax Forms
+        </button>
+      </div>
+      <div class="tax-forms-secondary">
+        <button onclick="exportCSV()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
+        <button onclick="recalculate()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          Recalculate Basis
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="donate-box">
+      <h3>💡 Tip the Builders</h3>
+      <p>If Ledger Timpi is saving you time on your taxes, tip the builders.</p>
+      <div class="donate-addr" onclick="navigator.clipboard.writeText(this.textContent.trim()).then(()=>{this.style.borderColor='var(--green)';this.title='Copied!';setTimeout(()=>{this.style.borderColor='';this.title=''},1500)})">neutaro1e8xal8tqdegu4w48z3fphemd3hc07gech3pfek</div>
+      <p class="donate-memo">Memo optional — just let us know what you shipped!</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>
+        <strong>Ledger Timpi</strong> — Open-source NTMPI cost basis tracker on the
+        <a href="https://neutaro.com" target="_blank">Neutaro</a> blockchain.
+        Part of the <a href="https://clawpurse.ai">ClawPurse</a> micropayment ecosystem.
+      </p>
+      <p style="margin-top:6px;">
+        Live price via <a href="https://www.coingecko.com/en/coins/neutaro" target="_blank">CoinGecko</a>.
+        Historical prices from bundled <code>prices.js</code> with CoinGecko API fallback for newer dates.
+      </p>
+      <nav style="margin-top:10px;font-size:0.72rem;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;" aria-label="Ecosystem links">
+        <a href="https://clawpurse.ai" style="color:var(--text-dim);">ClawPurse Wallet</a>
+        <a href="https://gateway.clawpurse.ai" style="color:var(--text-dim);">402 Gateway</a>
+        <a href="https://drip.clawpurse.ai" style="color:var(--text-dim);">Timpi Drip Faucet</a>
+        <a href="https://explorer.neutaro.io" target="_blank" style="color:var(--text-dim);">Neutaro Explorer</a>
+        <a href="https://timpi.io" target="_blank" style="color:var(--text-dim);">Timpi</a>
+        <a href="https://github.com/mhue-ai/ledger-timpi" target="_blank" style="color:var(--text-dim);">Source Code</a>
+      </nav>
+      <p style="margin-top:10px;font-size:0.65rem;color:var(--text-dim);line-height:1.6;">
+        <strong>IRS Tax Disclaimer:</strong> This tool is for informational purposes only and is not tax, legal, or financial advice.
+        Per IRS guidance, cryptocurrency is treated as property (Notice 2014-21). Staking and node rewards are ordinary income
+        at fair market value when received (Rev. Rul. 2023-14). Cost basis must be tracked per-wallet starting 2025 tax year
+        (Rev. Proc. 2024-28). Dispositions may trigger short-term (&le;1 year, ordinary rates) or long-term (&gt;1 year, preferential rates)
+        capital gains. Always consult a qualified tax professional for your specific situation.
+      </p>
+    </div>
+  </footer>
+
+  <script src="prices.js"></script>
+  <script>
+    const NEUTARO = {
+      rest: 'https://api2.neutaro.io',
+      denom: 'uneutaro',
+      decimals: 6,
+      prefix: 'neutaro',
+      explorer: 'https://explorer.neutaro.io/Neutaro/tx',
+      coingeckoId: 'neutaro',
+      nftContract: 'neutaro14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s9z4e5z',
+    };
+
+    /* ── Node NFT reward schedules (guaranteed minimum pool per node/month) ── */
+    /* Source: https://github.com/Timpi-official/Nodes                        */
+    /* Founders Edition (FE) rates are set fees, not calculated from base.    */
+    const NFT_REWARDS = {
+      /* ── Collectors ── */
+      'Collector': [
+        { from: '2024-01', to: '2025-08', ntmpi: 375 },
+        { from: '2025-09', to: '2026-08', ntmpi: 250 },
+        { from: '2026-09', to: '2027-08', ntmpi: 210 },
+      ],
+      'Collector FE': [
+        { from: '2024-01', to: '2025-08', ntmpi: 563 },
+        { from: '2025-09', to: '2026-08', ntmpi: 375 },
+        { from: '2026-09', to: '2027-08', ntmpi: 315 },
+      ],
+      /* ── Guardians ── */
+      'Guardian': [
+        { from: '2024-01', to: '2025-08', ntmpi: 667 },
+        { from: '2025-09', to: '2026-08', ntmpi: 500 },
+        { from: '2026-09', to: '2027-08', ntmpi: 375 },
+      ],
+      'Guardian FE': [
+        { from: '2024-01', to: '2025-08', ntmpi: 1000 },
+        { from: '2025-09', to: '2026-08', ntmpi: 750 },
+        { from: '2026-09', to: '2027-08', ntmpi: 563 },
+      ],
+      /* ── Synaptrons (Tier 1: 4-6GB VRAM) ── */
+      'Synaptron T1': [
+        { from: '2025-01', to: '2025-12', ntmpi: 1400 },
+        { from: '2026-01', to: '2026-12', ntmpi: 800 },
+        { from: '2027-01', to: '2027-12', ntmpi: 500 },
+      ],
+      'Synaptron T1 FE': [
+        { from: '2025-01', to: '2025-12', ntmpi: 2100 },
+        { from: '2026-01', to: '2026-12', ntmpi: 1200 },
+        { from: '2027-01', to: '2027-12', ntmpi: 750 },
+      ],
+      /* ── Synaptrons (Tier 2: 8-16GB VRAM) ── */
+      'Synaptron T2': [
+        { from: '2025-01', to: '2025-12', ntmpi: 1600 },
+        { from: '2026-01', to: '2026-12', ntmpi: 1000 },
+        { from: '2027-01', to: '2027-12', ntmpi: 700 },
+      ],
+      'Synaptron T2 FE': [
+        { from: '2025-01', to: '2025-12', ntmpi: 2400 },
+        { from: '2026-01', to: '2026-12', ntmpi: 1500 },
+        { from: '2027-01', to: '2027-12', ntmpi: 1050 },
+      ],
+      /* ── GeoCores ── */
+      'GeoCore': [
+        { from: '2025-07', to: '2026-08', ntmpi: 800 },
+        { from: '2026-09', to: '2027-08', ntmpi: 400 },
+        { from: '2027-09', to: '2028-08', ntmpi: 300 },
+      ],
+      'GeoCore FE': [
+        { from: '2025-07', to: '2026-08', ntmpi: 1200 },
+        { from: '2026-09', to: '2027-08', ntmpi: 600 },
+        { from: '2027-09', to: '2028-08', ntmpi: 450 },
+      ],
+    };
+
+    function classifyNFT(tokenId) {
+      const id = tokenId.toLowerCase();
+      const isFE = id.includes('founders edition') || id.includes('founders_edition') || id.includes('fe ');
+      const suffix = isFE ? ' FE' : '';
+      const edition = isFE ? 'Founders Edition' : 'Regular';
+
+      if (id.startsWith('collector')) return { category: 'Collector', edition, rewardKey: 'Collector' + suffix, icon: '🔍', css: 'collector' };
+      if (id.startsWith('guardian'))  return { category: 'Guardian',  edition, rewardKey: 'Guardian' + suffix,  icon: '🛡️', css: 'guardian' };
+      if (id.startsWith('synaptron'))return { category: 'Synaptron', edition, rewardKey: 'Synaptron T1' + suffix, icon: '🧠', css: 'synaptron' };
+      if (id.startsWith('geocore'))  return { category: 'GeoCore',   edition, rewardKey: 'GeoCore' + suffix,   icon: '🌐', css: 'geocore' };
+      return { category: 'Unknown', edition: 'Unknown', rewardKey: null, icon: '📦', css: 'collector' };
+    }
+
+    function getCurrentMonthlyReward(rewardKey) {
+      if (!rewardKey || !NFT_REWARDS[rewardKey]) return 0;
+      const now = new Date();
+      const ym = `${now.getUTCFullYear()}-${String(now.getUTCMonth()+1).padStart(2,'0')}`;
+      for (const period of NFT_REWARDS[rewardKey]) {
+        if (ym >= period.from && ym <= period.to) return period.ntmpi;
+      }
+      return 0;
+    }
+
+    let state = {
+      address: '',
+      balance: 0n,
+      staked: 0n,
+      transfers: [],
+      nfts: [],
+      currentPrice: 0,
+      method: 'fifo',
+      activeFilters: new Set(['in', 'out', 'self_transfer_in', 'self_transfer_out', 'delegate', 'undelegate', 'redelegate', 'reward',
+        'node_synaptron', 'node_guardian', 'node_collector', 'node_geocore', 'node_reward', 'node_unclassified', 'node_adjustment',
+        'staking_apy', 'lootbox', 'timpi_transfer', 'gift', 'drip']),
+    };
+
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+
+    /* ── Canonical type sets (single source of truth) ── */
+    const INFLOW_TYPES = new Set(['in', 'reward', 'node_synaptron', 'node_guardian', 'node_collector', 'node_geocore', 'node_reward', 'node_unclassified', 'node_adjustment', 'staking_apy', 'lootbox', 'timpi_transfer', 'gift', 'drip', 'self_transfer_in']);
+    const INCOME_TYPES = new Set(['reward', 'node_synaptron', 'node_guardian', 'node_collector', 'node_geocore', 'node_reward', 'node_unclassified', 'node_adjustment', 'staking_apy', 'lootbox']);
+    const KNOWN_TIMPI = new Set([
+      'neutaro1q68nu5lwczjepjtt6v7fek8vu2m7jxnaukrpdu',
+      'neutaro1n0uc8wwaxez3xzw8722kh2c9kuvqxtamgja4rg',
+      'neutaro1dq5a4x9f8ksp0y062z7v5cn3sa99tgfmjrk92x',
+      'neutaro123rsx3yhd8qts0aduw7zacpwtk6m94ucvya354',
+    ]);
+
+    /* ── Address Book (persisted in localStorage) ── */
+    /* Supports: self (own wallets), exchange, gift recipient, other */
+    /* Self-tagged addresses change tax treatment:
+       - Inflows from self → 'self_transfer_in' (non-taxable, carryover basis)
+       - Outflows to self  → 'self_transfer_out' (non-taxable, no disposition) */
+
+    function getAddressBook() {
+      try {
+        return JSON.parse(localStorage.getItem('ledgerTimpiAddrBook') || '{}');
+      } catch { return {}; }
+    }
+    function saveAddressBook(book) {
+      localStorage.setItem('ledgerTimpiAddrBook', JSON.stringify(book));
+    }
+    function addAddressTag() {
+      const input = $('#addr-book-input');
+      const tag = $('#addr-book-tag').value;
+      const addr = input.value.trim().toLowerCase();
+      if (!addr || !addr.startsWith('neutaro1')) {
+        input.style.borderColor = 'var(--red)';
+        setTimeout(() => input.style.borderColor = '', 1500);
+        return;
+      }
+      const book = getAddressBook();
+      book[addr] = tag;
+      saveAddressBook(book);
+      input.value = '';
+      renderAddressBook();
+      // Re-classify and recalculate if we have data
+      if (state.transfers.length) {
+        reclassifyTransfers();
+        recalculate();
+        renderTable();
+      }
+    }
+    function removeAddressTag(addr) {
+      const book = getAddressBook();
+      delete book[addr];
+      saveAddressBook(book);
+      renderAddressBook();
+      if (state.transfers.length) {
+        reclassifyTransfers();
+        recalculate();
+        renderTable();
+      }
+    }
+    function renderAddressBook() {
+      const book = getAddressBook();
+      const list = $('#addr-book-list');
+      const entries = Object.entries(book);
+      if (!entries.length) {
+        list.innerHTML = '<div class="addr-book-empty">No addresses tagged yet. Add your other wallet addresses below.</div>';
+      } else {
+        list.innerHTML = entries.map(([addr, tag]) => `
+          <div class="addr-book-row">
+            <div class="addr-book-addr" title="${addr}">${addr}</div>
+            <span class="addr-tag ${tag}">${tag === 'self' ? '🔁 Self' : tag === 'exchange' ? '🏦 Exchange' : tag === 'gift' ? '🎁 Gift' : '📋 Other'}</span>
+            <button class="addr-del-btn" onclick="removeAddressTag('${addr}')" title="Remove">✕</button>
+          </div>
+        `).join('');
+      }
+      // Show/hide disposition warning
+      updateDispositionWarning();
+    }
+    function updateDispositionWarning() {
+      const warn = $('#disposition-warning');
+      if (!warn || !state.transfers.length) { if (warn) warn.style.display = 'none'; return; }
+      const book = getAddressBook();
+      // Find outgoing transfers to untagged, non-Timpi addresses
+      const untagged = state.transfers.filter(tx => {
+        if (tx.type !== 'out') return false;
+        const cp = (tx.counterparty || '').toLowerCase();
+        return cp && !book[cp] && !KNOWN_TIMPI.has(cp);
+      });
+      if (untagged.length > 0) {
+        const addrs = [...new Set(untagged.map(t => (t.counterparty||'').toLowerCase()))];
+        const total = untagged.reduce((s,t) => s + Number(t.amount)/1e6, 0);
+        warn.innerHTML = `<strong>⚠️ ${untagged.length} outgoing transfer${untagged.length > 1 ? 's' : ''} to ${addrs.length} untagged address${addrs.length > 1 ? 'es' : ''}</strong> (${total.toLocaleString('en-US', {maximumFractionDigits:2})} NTMPI). ` +
+          `If any are your own wallets, tag them as "Self" — otherwise they'll show as taxable dispositions on Form 8949.`;
+        warn.style.display = 'block';
+      } else {
+        warn.style.display = 'none';
+      }
+    }
+
+    /* Re-classify transfers based on address book tags */
+    function reclassifyTransfers() {
+      const book = getAddressBook();
+      for (const tx of state.transfers) {
+        const cp = (tx.counterparty || '').toLowerCase();
+        const tag = book[cp];
+        // Store original type so we can restore if tag is removed
+        if (!tx._originalType) tx._originalType = tx.type;
+        if (tag === 'self') {
+          // Inflows from self-tagged addresses → non-taxable self-transfer
+          if (tx._originalType === 'in' || tx._originalType === 'timpi_transfer') {
+            tx.type = 'self_transfer_in';
+          }
+          // Outflows to self-tagged addresses → non-taxable self-transfer
+          if (tx._originalType === 'out') {
+            tx.type = 'self_transfer_out';
+          }
+        } else {
+          // Restore original type if tag removed or changed
+          tx.type = tx._originalType;
+        }
+      }
+    }
+
+    // Initialize address book on load
+    document.addEventListener('DOMContentLoaded', () => renderAddressBook());
+
+    /* Auto-detect self-owned wallets by analyzing round-trip transfer patterns.
+       An address is flagged as likely self-owned if this wallet both sent TO it
+       AND received FROM it (any inflow type). Users can manually tag additional
+       addresses via the Address Book UI. */
+    function autoDetectSelfWallets() {
+      const book = getAddressBook();
+      const outAddrs = new Set();
+      const inAddrs = new Set();
+      for (const tx of state.transfers) {
+        const cp = (tx.counterparty || '').toLowerCase();
+        if (!cp || cp === state.address.toLowerCase()) continue;
+        if (tx.type === 'out') outAddrs.add(cp);
+        // Any inbound transfer (regardless of classified type) counts for round-trip detection
+        const origType = tx._originalType || tx.type;
+        if (origType !== 'out' && origType !== 'delegate' && origType !== 'undelegate' && origType !== 'redelegate' && origType !== 'reward') {
+          inAddrs.add(cp);
+        }
+      }
+      // Round-trip addresses: sent to AND received from — strong self-wallet signal
+      const candidates = [...outAddrs].filter(a => inAddrs.has(a))
+        .filter(a => !book[a] && !KNOWN_TIMPI.has(a));
+      
+      if (candidates.length > 0) {
+        for (const addr of candidates) { book[addr] = 'self'; }
+        saveAddressBook(book);
+      }
+    }
+
+    /* ── UI helpers ── */
+
+    function showStatus(msg, type = 'info') {
+      const c = $('#status-container');
+      c.classList.remove('hidden');
+      c.innerHTML = `<div class="status-bar ${type === 'error' ? 'error' : type === 'success' ? 'success' : ''}">
+        ${type === 'info' ? '<div class="spinner"></div>' : ''}<span>${msg}</span></div>`;
+    }
+    function hideStatus() { $('#status-container').classList.add('hidden'); }
+    function fmt(n, dec = 6) { return Number(n).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }); }
+    function fmtUSD(n) { return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function microToDisplay(micro) { return Number(micro) / (10 ** NEUTARO.decimals); }
+    function truncAddr(a) { return (!a || a.length < 16) ? a : a.slice(0, 12) + '…' + a.slice(-6); }
+
+    /* ── Neutaro REST API — Balance & Staking ── */
+
+    async function fetchBalance(address) {
+      const res = await fetch(`${NEUTARO.rest}/cosmos/bank/v1beta1/balances/${address}`);
+      if (!res.ok) throw new Error(`Balance fetch failed: ${res.status}`);
+      const data = await res.json();
+      const coin = (data.balances || []).find(b => b.denom === NEUTARO.denom);
+      return BigInt(coin?.amount || '0');
+    }
+
+    async function fetchDelegations(address) {
+      try {
+        const res = await fetch(`${NEUTARO.rest}/cosmos/staking/v1beta1/delegations/${address}`);
+        if (!res.ok) return 0n;
+        const data = await res.json();
+        let total = 0n;
+        for (const d of (data.delegation_responses || [])) {
+          total += BigInt(d.balance?.amount || '0');
+        }
+        return total;
+      } catch { return 0n; }
+    }
+
+    /* ── Neutaro REST API — Transaction fetching ── */
+
+    async function fetchAllTransactions(address) {
+      const events = [];
+
+      // Known Timpi payout addresses for classification
+      const TIMPI_NODE_PAYER  = 'neutaro1q68nu5lwczjepjtt6v7fek8vu2m7jxnaukrpdu';
+      const TIMPI_APY_PAYER   = 'neutaro1n0uc8wwaxez3xzw8722kh2c9kuvqxtamgja4rg';
+      const TIMPI_OPS         = 'neutaro1dq5a4x9f8ksp0y062z7v5cn3sa99tgfmjrk92x';
+      const CHARITY_VALIDATOR = 'neutaro123rsx3yhd8qts0aduw7zacpwtk6m94ucvya354';
+
+      // Bank sends (as recipient and sender)
+      for (const role of ['recipient', 'sender']) {
+        const txs = await fetchTxByEvent(`transfer.${role}`, address);
+        const dir = role === 'recipient' ? 'in' : 'out';
+        for (const tx of txs) {
+          for (const msg of tx.msgs) {
+            if (msg['@type'] === '/cosmos.bank.v1beta1.MsgSend') {
+              const coin = (msg.amount || []).find(a => a.denom === NEUTARO.denom);
+              if (!coin) continue;
+              const match = (role === 'sender' && msg.from_address === address) ||
+                            (role === 'recipient' && msg.to_address === address);
+              if (match) {
+                // Classify incoming transfers by sender address + memo
+                let txType = dir;
+                let memo = tx.memo || '';
+                if (dir === 'in') {
+                  const sender = msg.from_address;
+                  const memoLower = memo.toLowerCase();
+                  if (sender === TIMPI_NODE_PAYER) {
+                    // Primary node reward payout wallet — classify by memo
+                    // Note: Timpi uses various abbreviations: 'Synap', 'Syn', 'Synaptron'
+                    if (memoLower.includes('syn')) txType = 'node_synaptron';
+                    else if (memoLower.includes('guardian')) txType = 'node_guardian';
+                    else if (memoLower.includes('collector')) txType = 'node_collector';
+                    else if (memoLower.includes('geo')) txType = 'node_geocore';
+                    else if (memoLower.includes('apy') || memoLower.includes('apr')) txType = 'staking_apy';
+                    else if (memoLower.includes('missing') || memoLower.includes('missed')) txType = 'node_adjustment';
+                    else txType = 'node_unclassified';
+                  } else if (sender === TIMPI_APY_PAYER) {
+                    // Timpi APY / lootbox / adjustment wallet
+                    if (memoLower.includes('lootbox')) txType = 'lootbox';
+                    else if (memoLower.includes('adjustment') || memoLower.includes('synaptron adj')) txType = 'node_adjustment';
+                    else txType = 'staking_apy';
+                  } else if (sender === TIMPI_OPS) {
+                    // Timpi operational wallet — node-type memos are rewards, everything else is a purchase/transfer
+                    if (memoLower.includes('syn')) txType = 'node_synaptron';
+                    else if (memoLower.includes('guardian')) txType = 'node_guardian';
+                    else if (memoLower.includes('collector')) txType = 'node_collector';
+                    else if (memoLower.includes('geo')) txType = 'node_geocore';
+                    else txType = 'timpi_transfer';
+                  } else if (sender === CHARITY_VALIDATOR) {
+                    txType = 'gift';
+                  } else if (memoLower.includes('drip') || memoLower.includes('faucet')) {
+                    txType = 'drip';
+                  }
+                }
+                events.push({
+                  hash: tx.hash, height: tx.height, timestamp: tx.timestamp,
+                  type: txType,
+                  amount: BigInt(coin.amount),
+                  counterparty: role === 'sender' ? msg.to_address : msg.from_address,
+                  memo,
+                });
+              }
+            }
+          }
+        }
+      }
+
+      // Delegations
+      const delegateTxs = await fetchTxByEvent('message.action', '/cosmos.staking.v1beta1.MsgDelegate', address);
+      for (const tx of delegateTxs) {
+        for (const msg of tx.msgs) {
+          if (msg['@type'] === '/cosmos.staking.v1beta1.MsgDelegate' && msg.delegator_address === address) {
+            const coin = msg.amount;
+            if (coin && coin.denom === NEUTARO.denom) {
+              events.push({
+                hash: tx.hash, height: tx.height, timestamp: tx.timestamp,
+                type: 'delegate',
+                amount: BigInt(coin.amount),
+                counterparty: msg.validator_address || '',
+                memo: tx.memo || '',
+              });
+            }
+          }
+        }
+      }
+
+      // Undelegations
+      const undelegateTxs = await fetchTxByEvent('message.action', '/cosmos.staking.v1beta1.MsgUndelegate', address);
+      for (const tx of undelegateTxs) {
+        for (const msg of tx.msgs) {
+          if (msg['@type'] === '/cosmos.staking.v1beta1.MsgUndelegate' && msg.delegator_address === address) {
+            const coin = msg.amount;
+            if (coin && coin.denom === NEUTARO.denom) {
+              events.push({
+                hash: tx.hash, height: tx.height, timestamp: tx.timestamp,
+                type: 'undelegate',
+                amount: BigInt(coin.amount),
+                counterparty: msg.validator_address || '',
+                memo: tx.memo || '',
+              });
+            }
+          }
+        }
+      }
+
+      // Redelegations
+      const redelegateTxs = await fetchTxByEvent('message.action', '/cosmos.staking.v1beta1.MsgBeginRedelegate', address);
+      for (const tx of redelegateTxs) {
+        for (const msg of tx.msgs) {
+          if (msg['@type'] === '/cosmos.staking.v1beta1.MsgBeginRedelegate' && msg.delegator_address === address) {
+            const coin = msg.amount;
+            if (coin && coin.denom === NEUTARO.denom) {
+              events.push({
+                hash: tx.hash, height: tx.height, timestamp: tx.timestamp,
+                type: 'redelegate',
+                amount: BigInt(coin.amount),
+                counterparty: `${truncAddr(msg.validator_src_address)} → ${truncAddr(msg.validator_dst_address)}`,
+                memo: tx.memo || '',
+              });
+            }
+          }
+        }
+      }
+
+      // Reward withdrawals
+      const rewardTxs = await fetchTxByEvent('message.action', '/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward', address);
+      for (const tx of rewardTxs) {
+        // Rewards show up in tx events, not in the message body amount
+        // Parse from events: withdraw_rewards.amount
+        const rewardAmount = parseRewardFromEvents(tx.events, address);
+        if (rewardAmount > 0n) {
+          events.push({
+            hash: tx.hash, height: tx.height, timestamp: tx.timestamp,
+            type: 'reward',
+            amount: rewardAmount,
+            counterparty: 'Staking Reward',
+            memo: tx.memo || '',
+          });
+        }
+      }
+
+      // Deduplicate by hash+type
+      const seen = new Set();
+      return events.filter(e => {
+        const k = `${e.hash}-${e.type}-${e.amount}`;
+        if (seen.has(k)) return false;
+        seen.add(k); return true;
+      }).sort((a, b) => a.height - b.height);
+    }
+
+    function parseRewardFromEvents(events, address) {
+      // Look for withdraw_rewards events to get reward amount
+      if (!events) return 0n;
+      let total = 0n;
+      for (const ev of events) {
+        if (ev.type === 'withdraw_rewards' || ev.type === 'transfer') {
+          for (const attr of (ev.attributes || [])) {
+            if (attr.key === 'amount' && attr.value) {
+              // Parse "12345uneutaro" or "12345uneutaro,678uother"
+              const match = attr.value.match(/(\d+)uneutaro/);
+              if (match) total += BigInt(match[1]);
+            }
+          }
+        }
+      }
+      return total;
+    }
+
+    async function fetchTxByEvent(eventKey, eventValue, filterAddress) {
+      const txs = [];
+      let page = 1;
+      do {
+        let url;
+        if (filterAddress) {
+          // For message.action events, also filter by sender
+          url = `${NEUTARO.rest}/cosmos/tx/v1beta1/txs?events=${encodeURIComponent(`${eventKey}='${eventValue}'`)}&events=${encodeURIComponent(`message.sender='${filterAddress}'`)}&pagination.limit=100&page=${page}&order_by=2`;
+        } else {
+          url = `${NEUTARO.rest}/cosmos/tx/v1beta1/txs?events=${encodeURIComponent(`${eventKey}='${eventValue}'`)}&pagination.limit=100&page=${page}&order_by=2`;
+        }
+        const res = await fetch(url);
+        if (!res.ok) break;
+        const data = await res.json();
+        const total = parseInt(data.total || '0');
+        const responses = data.tx_responses || [];
+        for (let i = 0; i < responses.length; i++) {
+          const txRes = responses[i];
+          const msgs = data.txs?.[i]?.body?.messages || [];
+          const memo = data.txs?.[i]?.body?.memo || '';
+          // Also capture events from tx_response for reward parsing
+          const evts = txRes.events || txRes.logs?.[0]?.events || [];
+          txs.push({
+            hash: txRes.txhash,
+            height: parseInt(txRes.height),
+            timestamp: txRes.timestamp || '',
+            msgs,
+            memo,
+            events: evts,
+          });
+        }
+        if (page > 1) showStatus(`Fetching transactions… (page ${page})`, 'info');
+        if (responses.length < 100 || page * 100 >= total) break;
+        page++;
+      } while (page <= 20);
+      return txs;
+    }
+
+    /* ── Neutaro REST API — NFT queries (CW721) ── */
+
+    async function fetchNFTs(address) {
+      const nfts = [];
+      let startAfter = null;
+      for (let page = 0; page < 10; page++) {
+        const query = startAfter
+          ? { tokens: { owner: address, limit: 30, start_after: startAfter } }
+          : { tokens: { owner: address, limit: 30 } };
+        const b64 = btoa(JSON.stringify(query));
+        const url = `${NEUTARO.rest}/cosmwasm/wasm/v1/contract/${NEUTARO.nftContract}/smart/${b64}`;
+        try {
+          const res = await fetch(url);
+          if (!res.ok) break;
+          const data = await res.json();
+          const tokens = data?.data?.tokens || [];
+          if (!tokens.length) break;
+          for (const tokenId of tokens) {
+            const info = classifyNFT(tokenId);
+            const monthly = getCurrentMonthlyReward(info.rewardKey);
+            nfts.push({ tokenId, ...info, monthly });
+          }
+          startAfter = tokens[tokens.length - 1];
+          if (tokens.length < 30) break;
+        } catch { break; }
+      }
+      return nfts;
+    }
+
+    function renderNFTs() {
+      const card = $('#nft-card');
+      const grid = $('#nft-grid');
+      const summary = $('#nft-summary');
+
+      if (!state.nfts.length) {
+        card.classList.add('hidden');
+        return;
+      }
+      card.classList.remove('hidden');
+      summary.classList.remove('hidden');
+
+      let totalMonthly = 0;
+      grid.innerHTML = state.nfts.map(nft => {
+        totalMonthly += nft.monthly;
+        const monthlyUSD = nft.monthly * state.currentPrice;
+        return `<div class="nft-item">
+          <div class="nft-icon ${nft.css}">${nft.icon}</div>
+          <div class="nft-details">
+            <div class="nft-name" title="${nft.tokenId}">${nft.tokenId}</div>
+            <div class="nft-type">${nft.category} Node${nft.edition === 'Founders Edition' ? ' <span style="color:var(--yellow);font-size:0.6rem;font-weight:700;">★ FOUNDERS</span>' : ''}</div>
+            <div class="nft-reward">
+              <span class="nft-reward-value">${nft.monthly > 0 ? fmt(nft.monthly, 0) + ' NTMPI' : 'TBD'}</span>
+              <span class="nft-reward-label">/month</span>
+              ${nft.monthly > 0 ? `<span class="nft-reward-usd">≈ ${fmtUSD(monthlyUSD)}</span>` : ''}
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+
+      const totalMonthlyUSD = totalMonthly * state.currentPrice;
+      const annualUSD = totalMonthlyUSD * 12;
+
+      $('#nft-total-count').textContent = state.nfts.length;
+      $('#nft-total-monthly').textContent = fmt(totalMonthly, 0) + ' NTMPI';
+      $('#nft-total-monthly-usd').textContent = fmtUSD(totalMonthlyUSD);
+      $('#nft-total-annual').textContent = fmtUSD(annualUSD);
+      $('#nft-count').textContent = `${state.nfts.length} found on-chain`;
+    }
+
+    /* ── Price Data ── */
+
+    async function fetchCurrentPrice() {
+      try {
+        const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${NEUTARO.coingeckoId}&vs_currencies=usd`);
+        const data = await res.json();
+        return data[NEUTARO.coingeckoId]?.usd || 0;
+      } catch { return 0; }
+    }
+
+    function lookupHistoricalPrice(isoTimestamp) {
+      if (!isoTimestamp || !window.NTMPI_PRICES) return 0;
+      const d = new Date(isoTimestamp);
+      const key = `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
+      return window.NTMPI_PRICES[key] || 0;
+    }
+
+    function isoToCGDate(iso) {
+      if (!iso) return null;
+      const d = new Date(iso);
+      return `${String(d.getUTCDate()).padStart(2,'0')}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${d.getUTCFullYear()}`;
+    }
+
+    const _cgCache = {};
+    async function fetchHistoricalPriceAPI(cgDate) {
+      if (_cgCache[cgDate] !== undefined) return _cgCache[cgDate];
+      try {
+        const res = await fetch(`https://api.coingecko.com/api/v3/coins/${NEUTARO.coingeckoId}/history?date=${cgDate}`);
+        if (!res.ok) { _cgCache[cgDate] = 0; return 0; }
+        const data = await res.json();
+        const price = data.market_data?.current_price?.usd || 0;
+        _cgCache[cgDate] = price;
+        return price;
+      } catch { _cgCache[cgDate] = 0; return 0; }
+    }
+
+    /* ── Main fetch ── */
+
+    async function fetchWallet() {
+      const addr = $('#address-input').value.trim();
+      if (!addr.startsWith('neutaro1') || addr.length < 40) {
+        showStatus('Enter a valid Neutaro address (starts with neutaro1)', 'error');
+        return;
+      }
+      state.address = addr;
+      $('#fetch-btn').disabled = true;
+      try {
+        showStatus('Fetching current NTMPI price…', 'info');
+        state.currentPrice = await fetchCurrentPrice();
+        if (state.currentPrice > 0) {
+          $('#live-price').style.display = 'flex';
+          $('#price-display').textContent = `$${state.currentPrice.toFixed(6)}`;
+        }
+
+        showStatus('Fetching wallet balance…', 'info');
+        state.balance = await fetchBalance(addr);
+
+        showStatus('Fetching staking delegations…', 'info');
+        state.staked = await fetchDelegations(addr);
+
+        showStatus('Fetching all transactions (transfers, staking, rewards)…', 'info');
+        const raw = await fetchAllTransactions(addr);
+
+        showStatus(`Found ${raw.length} transactions. Looking up historical prices…`, 'info');
+
+        state.transfers = [];
+        const needAPI = [];
+
+
+        for (let idx = 0; idx < raw.length; idx++) {
+          const tx = raw[idx];
+          let autoPrice = 0;
+          // Cost basis applies to all inflow types
+          const needsPrice = INFLOW_TYPES.has(tx.type);
+          if (needsPrice) {
+            autoPrice = lookupHistoricalPrice(tx.timestamp);
+          }
+          state.transfers.push({
+            hash: tx.hash,
+            height: tx.height,
+            timestamp: tx.timestamp,
+            type: tx.type,
+            amount: tx.amount,
+            counterparty: tx.counterparty,
+            memo: tx.memo || '',
+            costPerToken: autoPrice,
+            autoPrice,
+          });
+          if (needsPrice && autoPrice === 0 && tx.timestamp) {
+            needAPI.push(idx);
+          }
+        }
+
+        // Fallback to CoinGecko for missing prices
+        if (needAPI.length > 0) {
+          showStatus(`${needAPI.length} transaction(s) not in price file — fetching from CoinGecko…`, 'info');
+          let apiCalls = 0;
+          for (const idx of needAPI) {
+            const t = state.transfers[idx];
+            const cgDate = isoToCGDate(t.timestamp);
+            if (!cgDate) continue;
+            if (apiCalls > 0 && apiCalls % 8 === 0) {
+              showStatus(`Fetching prices… (${apiCalls}/${needAPI.length}, rate-limit pause)`, 'info');
+              await new Promise(r => setTimeout(r, 2200));
+            }
+            const price = await fetchHistoricalPriceAPI(cgDate);
+            if (price > 0) { t.costPerToken = price; t.autoPrice = price; }
+            apiCalls++;
+          }
+        }
+
+        // Auto-detect self-owned wallets: addresses where this wallet both sent TO and received FROM
+        autoDetectSelfWallets();
+
+        // Apply address book tags before rendering
+        reclassifyTransfers();
+        renderAddressBook();
+        showStats();
+        renderTable();
+        recalculate();
+        $('#stats-row').classList.remove('hidden');
+        $('#addr-book').classList.remove('hidden');
+        $('#transfers-card').classList.remove('hidden');
+        $('#tax-forms-card').classList.remove('hidden');
+
+        // Fetch NFTs
+        showStatus('Querying node access NFTs…', 'info');
+        state.nfts = await fetchNFTs(addr);
+        renderNFTs();
+
+        showStatus(`Loaded ${state.transfers.length} transactions${state.nfts.length ? ` and ${state.nfts.length} NFTs` : ''} for ${truncAddr(addr)}`, 'success');
+        setTimeout(hideStatus, 3000);
+      } catch (err) {
+        showStatus(`Error: ${err.message}`, 'error');
+      } finally {
+        $('#fetch-btn').disabled = false;
+      }
+    }
+
+    /* ── Stats display ── */
+
+    function showStats() {
+      const bal = microToDisplay(state.balance);
+      const stk = microToDisplay(state.staked);
+      const totalTokens = bal + stk;
+      const totalVal = totalTokens * state.currentPrice;
+
+      $('#stat-balance').textContent = fmt(bal, 2) + ' NTMPI';
+      $('#stat-balance-usd').textContent = fmtUSD(bal * state.currentPrice);
+
+      $('#stat-staked').textContent = fmt(stk, 2) + ' NTMPI';
+      $('#stat-staked-usd').textContent = fmtUSD(stk * state.currentPrice);
+
+      $('#stat-value').textContent = fmtUSD(totalVal);
+      $('#stat-price').textContent = `@ $${state.currentPrice.toFixed(6)}/NTMPI`;
+
+      // Taxable income: all rewards (staking, node, APY, lootbox) per IRS Rev. Rul. 2023-14
+      // Staking/node rewards are ordinary income at FMV when received (dominion & control)
+      const incomeTxs = state.transfers.filter(t => INCOME_TYPES.has(t.type));
+      const totalRewards = incomeTxs.reduce((s, t) => s + microToDisplay(t.amount), 0);
+      const rewardCost = incomeTxs.reduce((s, t) => s + microToDisplay(t.amount) * t.costPerToken, 0);
+      $('#stat-rewards').textContent = fmt(totalRewards, 2) + ' NTMPI';
+      $('#stat-rewards-sub').textContent = `income basis ${fmtUSD(rewardCost)}`;
+    }
+
+    /* ── Filter toggles ── */
+
+    // Map filter chip data-filter to actual transaction types
+    const FILTER_GROUPS = {
+      'in': ['in', 'timpi_transfer', 'gift', 'drip'],
+      'out': ['out'],
+      'node_reward': ['node_synaptron', 'node_guardian', 'node_collector', 'node_geocore', 'node_reward', 'node_unclassified'],
+      'staking_apy': ['staking_apy'],
+      'delegate': ['delegate'],
+      'undelegate': ['undelegate'],
+      'redelegate': ['redelegate'],
+      'reward': ['reward'],
+      'other_reward': ['lootbox', 'node_adjustment'],
+    };
+
+    function toggleFilter(chip) {
+      const filter = chip.dataset.filter;
+      const types = FILTER_GROUPS[filter] || [filter];
+      chip.classList.toggle('active');
+      const isActive = chip.classList.contains('active');
+      for (const t of types) {
+        if (isActive) state.activeFilters.add(t);
+        else state.activeFilters.delete(t);
+      }
+      renderTable();
+    }
+
+    /* ── Table rendering ── */
+
+    const TYPE_LABELS = {
+      in: '<span class="td-in">▼ IN</span>',
+      out: '<span class="td-out">▲ OUT</span>',
+      self_transfer_in: '<span class="td-self">🔁 SELF IN</span>',
+      self_transfer_out: '<span class="td-self">🔁 SELF OUT</span>',
+      delegate: '<span class="td-stake">⬆ DELEGATE</span>',
+      undelegate: '<span class="td-stake">⬇ UNDELEGATE</span>',
+      redelegate: '<span class="td-stake">↔ REDELEGATE</span>',
+      reward: '<span class="td-reward">★ REWARD</span>',
+      node_synaptron: '<span class="td-node">⚡ NODE: SYNAPTRON</span>',
+      node_guardian: '<span class="td-node">🛡️ NODE: GUARDIAN</span>',
+      node_collector: '<span class="td-node">🔍 NODE: COLLECTOR</span>',
+      node_geocore: '<span class="td-node">🌐 NODE: GEOCORE</span>',
+      node_reward: '<span class="td-node">📦 NODE REWARD</span>',
+      node_unclassified: '<span class="td-node">📦 UNCLASSIFIED REWARD</span>',
+      node_adjustment: '<span class="td-adjustment">🔧 ADJUSTMENT</span>',
+      staking_apy: '<span class="td-apy">💰 STAKING APY</span>',
+      lootbox: '<span class="td-lootbox">🎁 LOOTBOX</span>',
+      timpi_transfer: '<span class="td-in" style="color:var(--cyan);">⇣ TIMPI XFER</span>',
+      gift: '<span class="td-in" style="color:#f472b6;">🎉 GIFT</span>',
+      drip: '<span class="td-in" style="color:#60a5fa;">💧 DRIP</span>',
+    };
+
+    function renderTable() {
+      const tbody = $('#tx-tbody');
+      const sortDir = $('#sort-order').value;
+      let list = state.transfers.filter(t => state.activeFilters.has(t.type));
+
+      if (sortDir === 'desc') list = [...list].reverse();
+
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:32px;">No transactions found</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = list.map(tx => {
+        const amt = microToDisplay(tx.amount);
+        const dateStr = tx.timestamp
+          ? new Date(tx.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          : '—';
+
+        const idx = state.transfers.indexOf(tx);
+        const isInflow = INFLOW_TYPES.has(tx.type);
+
+        const costCell = isInflow
+          ? `<input type="number" step="0.000001" min="0"
+              class="cost-input ${tx.autoPrice > 0 ? 'auto-filled' : ''}"
+              value="${tx.costPerToken ? tx.costPerToken.toFixed(6) : ''}"
+              placeholder="0.000000" data-idx="${idx}" onchange="updateCost(this)" />`
+          : '<span style="color:var(--text-muted)">—</span>';
+
+        const totalCost = (isInflow && tx.costPerToken > 0)
+          ? fmtUSD(amt * tx.costPerToken)
+          : '<span style="color:var(--text-muted)">—</span>';
+
+        const counterparty = tx.counterparty || '—';
+        const memo = tx.memo || '';
+
+        return `<tr>
+          <td>${dateStr}</td>
+          <td>${TYPE_LABELS[tx.type] || tx.type}</td>
+          <td style="font-weight:500">${fmt(amt, 2)}</td>
+          <td class="td-addr" title="${counterparty}">${truncAddr(counterparty)}</td>
+          <td class="td-memo" title="${memo}">${memo || '—'}</td>
+          <td>${costCell}</td>
+          <td>${totalCost}</td>
+          <td class="td-hash"><a href="${NEUTARO.explorer}/${tx.hash}" target="_blank">${tx.hash.slice(0,8)}…</a></td>
+        </tr>`;
+      }).join('');
+    }
+
+    function updateCost(input) {
+      const idx = parseInt(input.dataset.idx);
+      state.transfers[idx].costPerToken = parseFloat(input.value) || 0;
+      input.classList.remove('auto-filled');
+      recalculate();
+      renderTable();
+    }
+
+    function setMethod(m) {
+      state.method = m;
+      $$('.method-btn').forEach(b => b.classList.toggle('active', b.dataset.method === m));
+      recalculate();
+    }
+
+    /* ── Cost basis calculation (IRS compliant) ──
+       
+       Per IRS guidance (Rev. Rul. 2023-14, Rev. Proc. 2024-28, Notice 2024-57):
+       
+       Inflows that create cost basis:
+         - 'in' (bank receive) — acquisition at market price (capital asset)
+         - 'timpi_transfer' / 'gift' / 'drip' — acquisition at FMV on date received
+         - 'reward' (staking reward claim) — ordinary income at FMV, becomes cost basis
+         - 'node_*' (node rewards) — ordinary income at FMV, becomes cost basis
+         - 'staking_apy' — ordinary income at FMV, becomes cost basis
+         - 'lootbox' / 'node_adjustment' — ordinary income at FMV, becomes cost basis
+       
+       Outflows that dispose tokens:
+         - 'out' (bank send) — may trigger capital gain/loss
+       
+       Staking operations (delegate/undelegate/redelegate):
+         - Do NOT create or dispose cost basis lots
+         - Tokens remain owned, just locked/unlocked
+         - Not a taxable event per current IRS guidance
+       
+       Cost basis methods (IRS allows taxpayer election):
+         - FIFO: First-In-First-Out (IRS default if no election made)
+         - LIFO: Last-In-First-Out
+         - HIFO: Highest-In-First-Out (often most tax-advantageous)
+         - Average Cost: Running weighted average
+       
+       Per-wallet tracking: Starting 2025 tax year (Rev. Proc. 2024-28),
+       cost basis must be tracked per-wallet. This app tracks a single wallet.
+       
+       Note: This tool is for informational purposes only. Consult a tax professional.
+    */
+
+    function recalculate() {
+      // Inflows: transfers in + rewards claimed + node rewards + staking APY + lootbox + self-transfers in (carryover basis)
+      const inflows = state.transfers.filter(t =>
+        INFLOW_TYPES.has(t.type) && t.costPerToken > 0
+      );
+      // Outflows: only actual dispositions — self_transfer_out is non-taxable
+      const outflows = state.transfers.filter(t => t.type === 'out');
+
+      if (!inflows.length) {
+        $('#stat-basis').textContent = '—';
+        $('#stat-avg-cost').textContent = 'Enter cost per token';
+        $('#stat-pnl').textContent = '—';
+        $('#stat-pnl').className = 'stat-value';
+        $('#stat-pnl-pct').textContent = '—';
+        return;
+      }
+
+      let totalCost = 0, totalTokens = 0;
+      const lots = inflows.map(t => ({
+        amount: microToDisplay(t.amount),
+        cost: t.costPerToken,
+        remaining: microToDisplay(t.amount),
+        type: t.type,
+        timestamp: t.timestamp,
+      }));
+
+      for (const l of lots) {
+        totalCost += l.amount * l.cost;
+        totalTokens += l.amount;
+      }
+
+      if (state.method === 'fifo' || state.method === 'lifo' || state.method === 'hifo') {
+        let ordered;
+        if (state.method === 'lifo') {
+          ordered = [...lots].reverse();
+        } else if (state.method === 'hifo') {
+          ordered = [...lots].sort((a, b) => b.cost - a.cost); // highest cost first
+        } else {
+          ordered = lots; // FIFO: chronological order
+        }
+        let disposed = 0, disposedCost = 0;
+        for (const out of outflows) {
+          let rem = microToDisplay(out.amount);
+          for (const l of ordered) {
+            if (rem <= 0) break;
+            const take = Math.min(l.remaining, rem);
+            disposedCost += take * l.cost;
+            l.remaining -= take;
+            rem -= take;
+            disposed += take;
+          }
+        }
+        totalCost -= disposedCost;
+        totalTokens -= disposed;
+      } else {
+        // Average cost
+        const avg = totalCost / totalTokens;
+        let disp = 0;
+        for (const o of outflows) disp += microToDisplay(o.amount);
+        totalCost -= disp * avg;
+        totalTokens -= disp;
+      }
+
+      // Total value = (available balance + staked) × current price
+      const totalHeld = microToDisplay(state.balance) + microToDisplay(state.staked);
+      const val = totalHeld * state.currentPrice;
+      const pnl = val - totalCost;
+      const pct = totalCost > 0 ? (pnl / totalCost) * 100 : 0;
+      const avgPer = totalTokens > 0 ? totalCost / totalTokens : 0;
+
+      $('#stat-basis').textContent = fmtUSD(totalCost);
+      $('#stat-avg-cost').textContent = `avg $${avgPer.toFixed(6)}/NTMPI`;
+      $('#stat-value').textContent = fmtUSD(val);
+
+      $('#stat-pnl').textContent = (pnl >= 0 ? '+' : '') + fmtUSD(pnl);
+      $('#stat-pnl').className = `stat-value ${pnl >= 0 ? 'gain' : 'loss'}`;
+      $('#stat-pnl-pct').textContent = (pnl >= 0 ? '+' : '') + pct.toFixed(2) + '%';
+    }
+
+    /* ── CSV Export (IRS-aligned) ── */
+
+    function exportCSV() {
+      if (!state.transfers.length) return;
+      const rows = [['Date','Type','Tax_Category','Amount_NTMPI','Counterparty','Memo','FMV_Per_Token_USD','Total_FMV_USD','TxHash']];
+      for (const tx of state.transfers) {
+        const amt = microToDisplay(tx.amount);
+        const isInflow = INFLOW_TYPES.has(tx.type);
+        const memo = (tx.memo || '').replace(/"/g, '""');
+        // IRS tax category: Ordinary Income, Capital (acquisition), Disposition, Staking Op, Self-Transfer
+        let taxCat = '';
+        if (INCOME_TYPES.has(tx.type)) taxCat = 'Ordinary Income';
+        else if (tx.type === 'in' || tx.type === 'timpi_transfer' || tx.type === 'gift' || tx.type === 'drip') taxCat = 'Acquisition';
+        else if (tx.type === 'out') taxCat = 'Disposition';
+        else if (tx.type === 'self_transfer_in' || tx.type === 'self_transfer_out') taxCat = 'Non-Taxable (Self-Transfer)';
+        else if (tx.type === 'delegate' || tx.type === 'undelegate' || tx.type === 'redelegate') taxCat = 'Non-Taxable (Staking Op)';
+        rows.push([
+          tx.timestamp || '',
+          tx.type.toUpperCase(),
+          taxCat,
+          amt.toFixed(6),
+          tx.counterparty,
+          `"${memo}"`,
+          (isInflow && tx.costPerToken) ? tx.costPerToken.toFixed(6) : '',
+          (isInflow && tx.costPerToken > 0) ? (amt * tx.costPerToken).toFixed(2) : '',
+          tx.hash,
+        ]);
+      }
+      const blob = new Blob([rows.map(r => r.join(',')).join('\n')], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `ntmpi-cost-basis-${state.address.slice(0, 12)}.csv`;
+      a.click();
+    }
+
+    /* ── IRS Tax Form Generator ──
+       Generates per-tax-year:
+       1. Form 8949 (Capital Gains/Losses) — lot-matched dispositions
+       2. Income Summary — ordinary income from rewards
+       3. Transaction Detail — full supplement
+       Opens as printable HTML window.
+    */
+
+    function generateTaxForms() {
+      if (!state.transfers.length) { alert('No transactions loaded.'); return; }
+      const year = parseInt($('#tax-year').value);
+      const yearStart = new Date(`${year}-01-01T00:00:00Z`);
+      const yearEnd = new Date(`${year + 1}-01-01T00:00:00Z`);
+
+
+      // All transfers sorted chronologically
+      const sorted = [...state.transfers].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+      // ── Build cost basis lots from ALL inflows up to end of tax year ──
+      const lots = [];
+      for (const tx of sorted) {
+        if (new Date(tx.timestamp) >= yearEnd) break;
+        if (INFLOW_TYPES.has(tx.type) && tx.costPerToken > 0) {
+          lots.push({
+            date: tx.timestamp ? tx.timestamp.slice(0, 10) : '',
+            amount: Number(tx.amount) / 1e6,
+            remaining: Number(tx.amount) / 1e6,
+            cost: tx.costPerToken,
+            type: tx.type,
+            hash: tx.hash,
+          });
+        }
+      }
+
+      // Order lots per selected method
+      let orderedLots;
+      if (state.method === 'lifo') orderedLots = [...lots].reverse();
+      else if (state.method === 'hifo') orderedLots = [...lots].sort((a, b) => b.cost - a.cost);
+      else orderedLots = [...lots]; // FIFO
+
+      // ── Process dispositions BEFORE this tax year (consume lots) ──
+      for (const tx of sorted) {
+        if (new Date(tx.timestamp) >= yearStart) break;
+        if (tx.type === 'out') {
+          let rem = Number(tx.amount) / 1e6;
+          for (const l of orderedLots) {
+            if (rem <= 0) break;
+            const take = Math.min(l.remaining, rem);
+            l.remaining -= take;
+            rem -= take;
+          }
+        }
+      }
+
+      // ── Form 8949: dispositions IN this tax year ──
+      const form8949rows = [];
+      const dispositions = sorted.filter(tx => tx.type === 'out' && new Date(tx.timestamp) >= yearStart && new Date(tx.timestamp) < yearEnd);
+
+      for (const tx of dispositions) {
+        let rem = Number(tx.amount) / 1e6;
+        const saleDate = tx.timestamp ? tx.timestamp.slice(0, 10) : '';
+        // FMV on sale date
+        const salePricePerToken = lookupPrice(saleDate) || state.currentPrice;
+
+        for (const l of orderedLots) {
+          if (rem <= 0) break;
+          if (l.remaining <= 0) continue;
+          const take = Math.min(l.remaining, rem);
+          l.remaining -= take;
+          rem -= take;
+
+          const proceeds = take * salePricePerToken;
+          const basis = take * l.cost;
+          const gainLoss = proceeds - basis;
+          const acqDate = new Date(l.date);
+          const dispDate = new Date(saleDate);
+          const holdingDays = Math.floor((dispDate - acqDate) / 86400000);
+          const isLongTerm = holdingDays > 365;
+
+          form8949rows.push({
+            description: 'NTMPI (Neutaro)',
+            dateAcquired: l.date,
+            dateSold: saleDate,
+            proceeds: proceeds,
+            basis: basis,
+            adjustCode: '',
+            adjustAmount: 0,
+            gainLoss: gainLoss,
+            isLongTerm: isLongTerm,
+            qty: take,
+            hash: tx.hash,
+          });
+        }
+      }
+
+      // ── Income Summary: ordinary income IN this tax year ──
+      const incomeByType = {};
+      let totalIncome = 0, totalIncomeFMV = 0;
+      for (const tx of sorted) {
+        const d = new Date(tx.timestamp);
+        if (d < yearStart || d >= yearEnd) continue;
+        if (!INCOME_TYPES.has(tx.type)) continue;
+        const amt = Number(tx.amount) / 1e6;
+        const fmv = amt * (tx.costPerToken || 0);
+        if (!incomeByType[tx.type]) incomeByType[tx.type] = { count: 0, tokens: 0, fmv: 0 };
+        incomeByType[tx.type].count++;
+        incomeByType[tx.type].tokens += amt;
+        incomeByType[tx.type].fmv += fmv;
+        totalIncome += amt;
+        totalIncomeFMV += fmv;
+      }
+
+      // ── All year transactions for supplement ──
+      const yearTxs = sorted.filter(tx => {
+        const d = new Date(tx.timestamp);
+        return d >= yearStart && d < yearEnd;
+      });
+
+      // ── Generate printable HTML ──
+      const shortTerm = form8949rows.filter(r => !r.isLongTerm);
+      const longTerm = form8949rows.filter(r => r.isLongTerm);
+      const stTotal = shortTerm.reduce((s, r) => ({ p: s.p + r.proceeds, b: s.b + r.basis, g: s.g + r.gainLoss }), { p: 0, b: 0, g: 0 });
+      const ltTotal = longTerm.reduce((s, r) => ({ p: s.p + r.proceeds, b: s.b + r.basis, g: s.g + r.gainLoss }), { p: 0, b: 0, g: 0 });
+      const methodLabel = { fifo: 'FIFO', lifo: 'LIFO', hifo: 'HIFO', avg: 'Average Cost' }[state.method] || state.method;
+
+      const TYPE_NAMES = {
+        reward: 'On-Chain Staking Reward', node_synaptron: 'Synaptron Node Reward', node_guardian: 'Guardian Node Reward',
+        node_collector: 'Collector Node Reward', node_geocore: 'GeoCore Node Reward',
+        node_unclassified: 'Unclassified Rewards', node_reward: 'Unclassified Rewards',
+        node_adjustment: 'Node Adjustment / Missed Reward', staking_apy: 'Timpi Staking APY', lootbox: 'Lootbox Reward',
+      };
+      const TX_TYPE_NAMES = {
+        ...TYPE_NAMES, in: 'Transfer In', out: 'Transfer Out', delegate: 'Delegate', undelegate: 'Undelegate',
+        redelegate: 'Redelegate', timpi_transfer: 'Timpi Transfer', gift: 'Gift', drip: 'Drip Faucet',
+        self_transfer_in: 'Self-Transfer In', self_transfer_out: 'Self-Transfer Out',
+      };
+
+      function fmtD(n) { return n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); }
+
+      function render8949rows(rows) {
+        if (!rows.length) return '<tr><td colspan="8" style="text-align:center;color:#888;padding:12px;">No transactions</td></tr>';
+        return rows.map(r => `<tr>
+          <td>${r.description}</td>
+          <td>${r.dateAcquired}</td>
+          <td>${r.dateSold}</td>
+          <td style="text-align:right">${fmtD(r.proceeds)}</td>
+          <td style="text-align:right">${fmtD(r.basis)}</td>
+          <td>${r.adjustCode}</td>
+          <td style="text-align:right">${r.adjustAmount ? fmtD(r.adjustAmount) : ''}</td>
+          <td style="text-align:right;${r.gainLoss >= 0 ? 'color:green' : 'color:red'}">${fmtD(r.gainLoss)}</td>
+        </tr>`).join('');
+      }
+
+      function renderTotalRow(t) {
+        return `<tr style="font-weight:bold;border-top:2px solid #000;">
+          <td colspan="3">Totals</td>
+          <td style="text-align:right">${fmtD(t.p)}</td>
+          <td style="text-align:right">${fmtD(t.b)}</td>
+          <td></td><td></td>
+          <td style="text-align:right;${t.g >= 0 ? 'color:green' : 'color:red'}">${fmtD(t.g)}</td>
+        </tr>`;
+      }
+
+      const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>NTMPI Tax Forms — Tax Year ${year}</title>
+<style>
+  @media print { .no-print { display:none!important; } @page { margin: 0.5in; size: letter; } }
+  body { font-family: 'Courier New', monospace; font-size: 11px; color: #000; background: #fff; margin: 20px; line-height: 1.4; }
+  h1 { font-size: 16px; border-bottom: 2px solid #000; padding-bottom: 4px; margin-top: 30px; }
+  h2 { font-size: 13px; margin-top: 20px; border-bottom: 1px solid #666; padding-bottom: 2px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+  th, td { border: 1px solid #999; padding: 3px 6px; font-size: 10px; }
+  th { background: #eee; font-weight: bold; text-align: left; }
+  .header-block { border: 2px solid #000; padding: 10px; margin-bottom: 12px; }
+  .header-block strong { font-size: 14px; }
+  .section { page-break-inside: avoid; }
+  .disclaimer { font-size: 9px; color: #666; margin-top: 20px; border-top: 1px solid #ccc; padding-top: 8px; }
+  .no-print button { margin: 4px; padding: 6px 16px; font-size: 13px; cursor: pointer; }
+</style></head><body>
+
+<div class="no-print" style="text-align:center;margin-bottom:20px;padding:12px;background:#f0f0f0;border-radius:6px;">
+  <strong>NTMPI Tax Forms — Tax Year ${year}</strong><br>
+  <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+  <button onclick="window.close()">Close</button>
+</div>
+
+<div class="header-block">
+  <strong>NTMPI (Neutaro) — Tax Year ${year} Summary</strong><br>
+  Wallet: ${state.address}<br>
+  Cost Basis Method: ${methodLabel}<br>
+  Generated: ${new Date().toISOString().slice(0, 10)}<br>
+  Currency: USD &nbsp;|&nbsp; Asset: NTMPI (Neutaro, uneutaro, 6 decimals)<br>
+  <span style="font-size:9px;color:#666;">This is a supplement to IRS Form 8949 / Schedule D. Not a substitute for professional tax advice.</span>
+</div>
+
+<!-- ═══════ FORM 8949 PART I: SHORT-TERM ═══════ -->
+<div class="section">
+<h1>Form 8949 — Part I: Short-Term Capital Gains and Losses (held ≤1 year)</h1>
+<p style="font-size:10px;">Check Box I — Short-term digital asset transactions not reported on Form 1099-DA (non-custodial on-chain transactions)</p>
+<table>
+  <thead><tr>
+    <th>(a) Description</th><th>(b) Date Acquired</th><th>(c) Date Sold</th>
+    <th style="text-align:right">(d) Proceeds</th><th style="text-align:right">(e) Cost Basis</th>
+    <th>(f) Code</th><th style="text-align:right">(g) Adjustment</th><th style="text-align:right">(h) Gain/Loss</th>
+  </tr></thead>
+  <tbody>
+    ${render8949rows(shortTerm)}
+    ${renderTotalRow(stTotal)}
+  </tbody>
+</table>
+<p style="font-size:9px;">→ Report totals on Schedule D, Line 1a (if Box I checked → Line 3)</p>
+</div>
+
+<!-- ═══════ FORM 8949 PART II: LONG-TERM ═══════ -->
+<div class="section">
+<h1>Form 8949 — Part II: Long-Term Capital Gains and Losses (held &gt;1 year)</h1>
+<p style="font-size:10px;">Check Box L — Long-term digital asset transactions not reported on Form 1099-DA (non-custodial on-chain transactions)</p>
+<table>
+  <thead><tr>
+    <th>(a) Description</th><th>(b) Date Acquired</th><th>(c) Date Sold</th>
+    <th style="text-align:right">(d) Proceeds</th><th style="text-align:right">(e) Cost Basis</th>
+    <th>(f) Code</th><th style="text-align:right">(g) Adjustment</th><th style="text-align:right">(h) Gain/Loss</th>
+  </tr></thead>
+  <tbody>
+    ${render8949rows(longTerm)}
+    ${renderTotalRow(ltTotal)}
+  </tbody>
+</table>
+<p style="font-size:9px;">→ Report totals on Schedule D, Line 8a (if Box L checked → Line 10)</p>
+</div>
+
+<!-- ═══════ SCHEDULE D SUMMARY ═══════ -->
+<div class="section">
+<h1>Schedule D Summary — Capital Gains and Losses</h1>
+<table>
+  <tr><th>Category</th><th style="text-align:right">Proceeds (d)</th><th style="text-align:right">Cost Basis (e)</th><th style="text-align:right">Net Gain/Loss (h)</th></tr>
+  <tr><td>Short-Term (≤1 year)</td><td style="text-align:right">${fmtD(stTotal.p)}</td><td style="text-align:right">${fmtD(stTotal.b)}</td><td style="text-align:right;${stTotal.g >= 0 ? 'color:green' : 'color:red'}">${fmtD(stTotal.g)}</td></tr>
+  <tr><td>Long-Term (>1 year)</td><td style="text-align:right">${fmtD(ltTotal.p)}</td><td style="text-align:right">${fmtD(ltTotal.b)}</td><td style="text-align:right;${ltTotal.g >= 0 ? 'color:green' : 'color:red'}">${fmtD(ltTotal.g)}</td></tr>
+  <tr style="font-weight:bold;border-top:2px solid #000;"><td>TOTAL</td><td style="text-align:right">${fmtD(stTotal.p + ltTotal.p)}</td><td style="text-align:right">${fmtD(stTotal.b + ltTotal.b)}</td><td style="text-align:right;${(stTotal.g + ltTotal.g) >= 0 ? 'color:green' : 'color:red'}">${fmtD(stTotal.g + ltTotal.g)}</td></tr>
+</table>
+</div>
+
+<!-- ═══════ ORDINARY INCOME SUMMARY ═══════ -->
+<div class="section" style="page-break-before:always;">
+<h1>Ordinary Income — Staking &amp; Node Rewards (Schedule 1 / Schedule C)</h1>
+<p style="font-size:10px;">Per IRS Rev. Rul. 2023-14: Staking and node rewards are ordinary income at fair market value when received (dominion &amp; control).</p>
+<table>
+  <thead><tr><th>Income Type</th><th style="text-align:right">Transactions</th><th style="text-align:right">NTMPI Received</th><th style="text-align:right">FMV at Receipt (USD)</th></tr></thead>
+  <tbody>
+    ${Object.entries(incomeByType).map(([type, d]) => `<tr>
+      <td>${TYPE_NAMES[type] || type}</td>
+      <td style="text-align:right">${d.count}</td>
+      <td style="text-align:right">${d.tokens.toLocaleString('en-US', {maximumFractionDigits:2})}</td>
+      <td style="text-align:right">${fmtD(d.fmv)}</td>
+    </tr>`).join('')}
+    <tr style="font-weight:bold;border-top:2px solid #000;">
+      <td>TOTAL ORDINARY INCOME</td>
+      <td style="text-align:right">${Object.values(incomeByType).reduce((s,d)=>s+d.count,0)}</td>
+      <td style="text-align:right">${totalIncome.toLocaleString('en-US', {maximumFractionDigits:2})}</td>
+      <td style="text-align:right">${fmtD(totalIncomeFMV)}</td>
+    </tr>
+  </tbody>
+</table>
+<p style="font-size:9px;">
+  Report as Other Income on Schedule 1, Line 8z, or Schedule C if treated as business activity.<br>
+  The FMV at receipt becomes the cost basis for future dispositions of these tokens.
+</p>
+</div>
+
+<!-- ═══════ FULL TRANSACTION DETAIL ═══════ -->
+<div class="section" style="page-break-before:always;">
+<h1>Transaction Detail — Supplement to Form 8949 (Tax Year ${year})</h1>
+<p style="font-size:9px;">All ${yearTxs.length} transactions for wallet ${state.address} in tax year ${year}.</p>
+<table>
+  <thead><tr><th>Date</th><th>Type</th><th>Tax Category</th><th style="text-align:right">Amount (NTMPI)</th><th>Memo</th><th style="text-align:right">FMV/Token</th><th style="text-align:right">Total FMV</th><th>Tx Hash</th></tr></thead>
+  <tbody>
+    ${yearTxs.map(tx => {
+      const amt = Number(tx.amount) / 1e6;
+      let taxCat = '';
+      if (INCOME_TYPES.has(tx.type)) taxCat = 'Ordinary Income';
+      else if (['in','timpi_transfer','gift','drip'].includes(tx.type)) taxCat = 'Acquisition';
+      else if (tx.type === 'out') taxCat = 'Disposition';
+      else if (tx.type === 'self_transfer_in' || tx.type === 'self_transfer_out') taxCat = 'Non-Taxable (Self-Transfer)';
+      else if (['delegate','undelegate','redelegate'].includes(tx.type)) taxCat = 'Non-Taxable';
+      const fmv = tx.costPerToken ? fmtD(tx.costPerToken) : '—';
+      const totalFmv = (tx.costPerToken && INFLOW_TYPES.has(tx.type)) ? fmtD(amt * tx.costPerToken) : '—';
+      return `<tr>
+        <td>${(tx.timestamp||'').slice(0,10)}</td>
+        <td>${TX_TYPE_NAMES[tx.type]||tx.type}</td>
+        <td>${taxCat}</td>
+        <td style="text-align:right">${amt.toFixed(2)}</td>
+        <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${tx.memo||''}</td>
+        <td style="text-align:right">${fmv}</td>
+        <td style="text-align:right">${totalFmv}</td>
+        <td style="font-size:8px;">${tx.hash ? tx.hash.slice(0,12) + '…' : ''}</td>
+      </tr>`;
+    }).join('')}
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════ DISCLAIMER ═══════ -->
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This report is generated by Ledger Timpi (ledger.clawpurse.ai) for informational purposes only.
+  It is not tax, legal, or financial advice. Cryptocurrency is treated as property by the IRS (Notice 2014-21).
+  Staking and node rewards are ordinary income at FMV when received (Rev. Rul. 2023-14).
+  Cost basis tracked per-wallet per Rev. Proc. 2024-28. Cost basis method used: ${methodLabel}.
+  On-chain NTMPI transactions are not reported by brokers on Form 1099-DA — taxpayer is responsible for self-reporting.
+  Always consult a qualified tax professional. Generated ${new Date().toISOString()}.
+</div>
+
+</body></html>`;
+
+      // Open in new window
+      const win = window.open('', '_blank');
+      win.document.write(html);
+      win.document.close();
+    }
+
+    /* ── Price lookup helper for tax forms ── */
+    function lookupPrice(dateStr) {
+      if (!dateStr || !window.NTMPI_DAILY_PRICES) return 0;
+      // Try exact date
+      if (NTMPI_DAILY_PRICES[dateStr]) return NTMPI_DAILY_PRICES[dateStr];
+      // Try nearby dates (±3 days)
+      const d = new Date(dateStr);
+      for (let i = 1; i <= 3; i++) {
+        const prev = new Date(d); prev.setDate(prev.getDate() - i);
+        const key = prev.toISOString().slice(0, 10);
+        if (NTMPI_DAILY_PRICES[key]) return NTMPI_DAILY_PRICES[key];
+      }
+      return 0;
+    }
+
+    function clearAll() {
+      state = { address: '', balance: 0n, staked: 0n, transfers: [], nfts: [], currentPrice: 0, method: 'fifo',
+        activeFilters: new Set(['in', 'out', 'self_transfer_in', 'self_transfer_out', 'delegate', 'undelegate', 'redelegate', 'reward',
+          'node_synaptron', 'node_guardian', 'node_collector', 'node_geocore', 'node_reward', 'node_unclassified', 'node_adjustment',
+          'staking_apy', 'lootbox', 'timpi_transfer', 'gift', 'drip']) };
+      $('#address-input').value = '';
+      $('#stats-row').classList.add('hidden');
+      $('#addr-book').classList.add('hidden');
+      $('#transfers-card').classList.add('hidden');
+      $('#tax-forms-card').classList.add('hidden');
+      $('#nft-card').classList.add('hidden');
+      $('#live-price').style.display = 'none';
+      // Reset filter chips
+      $$('.toggle-chip').forEach(c => c.classList.add('active'));
+      hideStatus();
+    }
+
+    /* ── Init ── */
+    (async () => {
+      const price = await fetchCurrentPrice();
+      if (price > 0) {
+        state.currentPrice = price;
+        $('#live-price').style.display = 'flex';
+        $('#price-display').textContent = `$${price.toFixed(6)}`;
+      }
+      const p = new URLSearchParams(window.location.search);
+      const a = p.get('address') || p.get('addr');
+      if (a && a.startsWith('neutaro1')) {
+        $('#address-input').value = a;
+        fetchWallet();
+      }
+    })();
+  </script>
+</body>
+</html>
