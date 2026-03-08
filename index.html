@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ledger Timpi — NTMPI Cost Basis Calculator | Neutaro Tax Tool</title>
-  <meta name="description" content="Free open-source NTMPI cost basis calculator for the Neutaro blockchain. Track node rewards, staking APY, delegations, and transfers — auto-fetch pricing, generate IRS Form 8949, and compute FIFO/LIFO/HIFO capital gains. Part of the ClawPurse ecosystem." />
+  <title>Ledger Timpi — Neutaro Wallet Explorer, NFT Viewer & Tax Tool</title>
+  <meta name="description" content="Free open-source Neutaro wallet explorer. View balances, staking delegations, node access NFTs, and full transaction history. Export CSV, calculate FIFO/LIFO/HIFO cost basis, and generate IRS Form 8949 — all from one page. Part of the ClawPurse ecosystem." />
   <meta name="keywords" content="NTMPI cost basis, Neutaro tax calculator, crypto tax tool, NTMPI tax, staking rewards tax, node rewards income, IRS Form 8949, crypto capital gains, FIFO LIFO HIFO, Timpi node rewards, blockchain tax reporting, ClawPurse, cryptocurrency cost basis tracker, DePIN tax, Neutaro wallet" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Mhue" />
@@ -12,8 +12,8 @@
   <link rel="canonical" href="https://ledger.clawpurse.ai/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Ledger Timpi — Free NTMPI Cost Basis Calculator" />
-  <meta property="og:description" content="Open-source tax tool for NTMPI on Neutaro. Track node rewards, staking APY, and transfers. Generate Form 8949 with FIFO/LIFO/HIFO cost basis methods." />
+  <meta property="og:title" content="Ledger Timpi — Neutaro Wallet Explorer & Tax Tool" />
+  <meta property="og:description" content="Free wallet explorer for Neutaro. View balances, NFTs, transaction history, and staking. Export CSV and generate IRS tax forms — all in one page." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ledger.clawpurse.ai/" />
   <meta property="og:site_name" content="Ledger Timpi" />
@@ -21,8 +21,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ledger Timpi — NTMPI Cost Basis Calculator" />
-  <meta name="twitter:description" content="Free open-source tax tool for Neutaro. Node rewards, staking APY, Form 8949, and FIFO/LIFO/HIFO capital gains — all in one page." />
+  <meta name="twitter:title" content="Ledger Timpi — Neutaro Wallet Explorer & Tax Tool" />
+  <meta name="twitter:description" content="Free wallet explorer for Neutaro. View balances, NFTs, transactions, staking. Export CSV and generate IRS Form 8949 — all client-side." />
 
   <!-- Structured Data: WebApplication -->
   <script type="application/ld+json">
@@ -30,9 +30,9 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Ledger Timpi",
-    "alternateName": "NTMPI Cost Basis Calculator",
+    "alternateName": "Neutaro Wallet Explorer & Tax Tool",
     "url": "https://ledger.clawpurse.ai/",
-    "description": "Free open-source cost basis calculator for NTMPI on the Neutaro blockchain. Tracks node rewards, staking delegations, transfers, and generates IRS Form 8949 with multiple cost basis methods.",
+    "description": "Free open-source Neutaro wallet explorer. View balances, NFTs, staking, and transaction history. Export CSV and generate IRS Form 8949 with FIFO/LIFO/HIFO cost basis methods.",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any (web-based)",
     "offers": {
@@ -161,6 +161,12 @@
       --radius: 10px;
       --radius-sm: 6px;
     }
+
+
+    .feature-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+    .feature-pills .pill { font-size: 0.72rem; font-weight: 500; color: var(--text-dim); background: var(--bg-card); border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; white-space: nowrap; transition: border-color 0.2s; }
+    .feature-pills .pill:hover { border-color: var(--coral); color: var(--text); }
+    code { font-family: var(--mono); font-size: 0.85em; background: var(--bg-raised); padding: 2px 6px; border-radius: 4px; color: var(--coral); }
 
     html { scroll-behavior: smooth; }
     body {
@@ -496,8 +502,19 @@
 
   <div class="container">
     <section class="hero">
-      <h1>NTMPI <span>Cost Basis</span> Calculator</h1>
-      <p>Track your Neutaro chain transfers, staking delegations, and rewards — calculate USD cost basis with auto-fetched or manual pricing.</p>
+      <h1>Ledger <span>Timpi</span></h1>
+      <p>Neutaro wallet explorer, NFT viewer, and tax reporting tool. Paste any <code>neutaro1...</code> address to see balances, staking, node NFTs, full transaction history, CSV export, and IRS Form 8949 — all client-side, nothing stored.</p>
+    
+    <div class="feature-pills">
+      <span class="pill">💰 Balances &amp; Staking</span>
+      <span class="pill">🖼️ Node NFTs</span>
+      <span class="pill">📊 Transaction History</span>
+      <span class="pill">📥 CSV Export</span>
+      <span class="pill">📄 IRS Form 8949</span>
+      <span class="pill">🧮 FIFO / LIFO / HIFO</span>
+      <span class="pill">📒 Address Book</span>
+      <span class="pill">🔒 Client-Side Only</span>
+    </div>
     </section>
 
     <div class="card" id="wallet-card">
